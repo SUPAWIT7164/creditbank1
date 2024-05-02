@@ -96,13 +96,13 @@ export default {
       addSub: "users/addSub",
     }),
     confirmSubject() {
-      
       this.addSub({
         NAMESUBJECT: this.nameSubject,
         DETAILSUBJECT: this.detailSub,
         DATE: this.date,
         TIME: this.time,
         TOTALSTU: this.totalStu,
+        TEACHERNAME: "AJ.OTP EMAIL"
       })
         .then(() => {
           this.$swal({
@@ -118,6 +118,7 @@ export default {
           this.date = null;
           this.time = null;
           this.totalStu = null;
+
         })
         .catch((e) => {
           console.log(e);
