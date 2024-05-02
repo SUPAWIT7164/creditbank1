@@ -22,9 +22,9 @@
           </v-card>
         </v-col>
 
-        <v-col cols="12" class="text-start">
+        <!-- <v-col cols="12" class="text-start">
           <v-img :src="require('~/assets/ai.png')" width="100%" />
-        </v-col>
+        </v-col> -->
         <v-col cols="12" class="text-start">
           <v-card
             class="py-10 text-center"

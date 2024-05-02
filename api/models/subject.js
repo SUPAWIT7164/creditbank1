@@ -11,7 +11,9 @@ class SUBJECT {
   }
 
   static selectSubject() {
-    const query = `SELECT ... FROM SUBJECT WHERE POSTSTATUS = 0`
+    const query = `SELECT NAMESUBJECT , DETAILSUBJECT, DATE, TIME , TOTALSTU, POSTSTATUS FROM SUBJECT;
+    WHERE POSTSTATUS = 0`
+    return sqlcmd(query);
   }
 }
 
