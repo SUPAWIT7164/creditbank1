@@ -5,14 +5,27 @@ class SUBJECT {
     Object.assign(this, args);
   }
 
-  static addSubject(NAMESUBJECT, DETAILSUBJECT, DATE, TIME, TOTALSTU, POSTSTATUS) {
-    const query = `INSERT INTO SUBJECT(NAMESUBJECT , DETAILSUBJECT, DATE, TIME , TOTALSTU, POSTSTATUS) VALUES ("${NAMESUBJECT}", "${DETAILSUBJECT}", "${DATE}","${TIME}","${TOTALSTU}",${POSTSTATUS})`;
+  static addSubject(NAMESUBJECT, DETAILSUBJECT, DATE, TIME, TOTALSTU, POSTSTATUS, TEACHERNAME) {
+    const query = `INSERT INTO SUBJECT(NAMESUBJECT , DETAILSUBJECT, DATE, TIME , TOTALSTU, POSTSTATUS, TEACHERNAME) VALUES ("${NAMESUBJECT}", "${DETAILSUBJECT}", "${DATE}","${TIME}","${TOTALSTU}",${POSTSTATUS}, "${TEACHERNAME}")`;
     return sqlcmd(query);
   }
 
   static selectSubject() {
-    const query = `SELECT NAMESUBJECT , DETAILSUBJECT, DATE, TIME , TOTALSTU, POSTSTATUS FROM SUBJECT;
-    WHERE POSTSTATUS = 0`
+    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 0`
+    return sqlcmd(query);
+  }
+  static selectSubjectByID(ID) {
+    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 0`
+    return sqlcmd(query);
+  }
+
+  static cancelApprove(ID) {
+    const query = `UPDATE SUBJECT SET POSTSTATUS = 2 WHERE ID = ${ID}`
+    return sqlcmd(query);
+  }
+
+  static approvePost(ID){
+    const query = `UPDATE SUBJECT SET POSTSTATUS = 1 WHERE ID = ${ID}`
     return sqlcmd(query);
   }
 }
