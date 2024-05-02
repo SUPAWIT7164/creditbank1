@@ -48,7 +48,7 @@ export default {
       this.$router.push("/Teacher/addpeople");
     },
     login() {
-      this.$router.push("/Teacher/login");
+      this.$router.push("/login");
     },
   },
 };

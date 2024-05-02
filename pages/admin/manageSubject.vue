@@ -12,6 +12,7 @@
         <v-icon large>mdi mdi-home</v-icon>กลับสู่หน้าหลักแอดมิน
       </v-btn>
     </v-col>
+    
       <v-col cols="12">
         manageSubject
       </v-col>
