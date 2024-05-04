@@ -50,9 +50,19 @@ const handleCancelSub = async (req, res) => {
   }
 };
 
+const handleShowPopData = async (req, res) => {
+  try {
+    const result = await SUBJECT.showPopData();
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   handleAddSubject,
   handleSelectSubject,
   handleApproveSub,
-  handleCancelSub
+  handleCancelSub,
+  handleShowPopData,
 };

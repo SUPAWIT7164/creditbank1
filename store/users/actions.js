@@ -53,4 +53,14 @@ export default {
         return Promise.reject(err);
       });
   },
+  showPopSub({ commit }, data) {
+    return this.$axios
+      .$get("api/sub/showPopSub")
+      .then((response) => {
+        return Promise.resolve(response);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  },
 };

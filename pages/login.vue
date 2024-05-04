@@ -166,7 +166,7 @@ export default {
       // }
     //     this.$router.push("/Teacher/teacherhome"); 
     // },
-      this.$router.push("/admin/adminpage"); 
+      this.$router.push("/admin/adminapprove"); 
     },
 
     goRegister() {

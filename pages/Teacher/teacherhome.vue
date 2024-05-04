@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 import navbarteacher from "../../components/navbarteacher.vue";
 export default {
   component: {
@@ -74,54 +74,27 @@ export default {
   },
   data() {
     return {
-      postData: [
-        {
-          pic: require("~/assets/news.png"),
-          name: "โครงการอบรมเพื่อเพิ่มความรู้ Data Analysis",
-          date: "01/02/2024",
-          time: "9.00น.- 15.00น.",
-          total: "1/20 คน",
-        },
-        {
-          pic: require("~/assets/news.png"),
-          name: "โครงการอบรมเพื่อเพิ่มความรู้ Data Analysis",
-          date: "01/02/2024",
-          time: "9.00น.- 15.00น.",
-          total: "1/20 คน",
-        },
-        {
-          pic: require("~/assets/news.png"),
-          name: "โครงการอบรมเพื่อเพิ่มความรู้ Data Analysis",
-          date: "01/02/2024",
-          time: "9.00น.- 15.00น.",
-          total: "1/20 คน",
-        },
-        {
-          pic: require("~/assets/news.png"),
-          name: "โครงการอบรมเพื่อเพิ่มความรู้ Data Analysis",
-          date: "01/02/2024",
-          time: "9.00น.- 15.00น.",
-          total: "1/20 คน",
-        },
-        {
-          pic: require("~/assets/news.png"),
-          name: "โครงการอบรมเพื่อเพิ่มความรู้ Data Analysis",
-          date: "01/02/2024",
-          time: "9.00น.- 15.00น.",
-          total: "1/20 คน",
-        },
-      ],
+      postData: [],
     };
   },
   methods: {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
     }),
+    ...mapActions({
+      listSub: "users/showPopSub",
+    }),
+    async showPopData() {
+      this.postData = await this.listSub();
+      console.log(this.postData);
+    },
   },
-  mounted() {},
+  mounted() {
+    this.showPopData();
+  },
 };
 </script>
-<style >
+<style>
 .theme--light.v-application {
   background-color: rgb(86, 83, 83) !important;
 }

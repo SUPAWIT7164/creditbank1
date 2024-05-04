@@ -36,7 +36,11 @@
               <p class="title tX-color">จำนวน : {{ item.TOTALSTU }} คน</p>
             </v-col>
             <v-col cols="6" class="d-flex align-center justify-center">
-              <v-btn class="mr-5" depressed color="success" @click="approveBtn(item)"
+              <v-btn
+                class="mr-5"
+                depressed
+                color="success"
+                @click="approveBtn(item)"
                 >ยืนยัน</v-btn
               >
               <v-btn
@@ -142,5 +146,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

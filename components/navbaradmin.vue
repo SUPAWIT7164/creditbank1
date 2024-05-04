@@ -59,37 +59,31 @@ export default {
       selectedItem: "",
       items: [
         {
-          title: "จัดการระบบ",
-          icon: "mdi-cog",
-          nested: true,
-          subitems: [
-                {
-              title: "จัดการสิทธิ์การสร้างโพสต์อบรม",
-              icon: "mdi-wrench",
-              to: "/admin/adminapprove",
-            },
-            {
-              title: "แก้ไขข้อมูลของผู้ใช้",
-              icon: "mdi-wrench",
-              to: "/admin/manageusers",
-            },
-            // {
-            //   title: "ดูจำนวนผู้ใช้งานในระบบ",
-            //   icon: "mdi-wrench",
-            //   to: "/admin/managecer",
-            // },
-            {
-              title: "จัดการโพสต์",
-              icon: "mdi-wrench",
-              to: "/admin/manageSubject",
-            },
-            // {
-            //   title: "เพิ่มเนื้อหาข่าวสาร",
-            //   icon: "mdi-wrench",
-            //   to: "/admin/manageNews",
-            // },
-          ],
+          title: "จัดการสิทธิ์การสร้างโพสต์อบรม",
+          icon: "mdi-wrench",
+          to: "/admin/adminapprove",
         },
+        {
+          title: "แก้ไขข้อมูลของผู้ใช้",
+          icon: "mdi-wrench",
+          to: "/admin/manageusers",
+        },
+        // {
+        //   title: "ดูจำนวนผู้ใช้งานในระบบ",
+        //   icon: "mdi-wrench",
+        //   to: "/admin/managecer",
+        // },
+        {
+          title: "จัดการโพสต์",
+          icon: "mdi-wrench",
+          to: "/admin/manageSubject",
+        },
+        // {
+        //   title: "เพิ่มเนื้อหาข่าวสาร",
+        //   icon: "mdi-wrench",
+        //   to: "/admin/manageNews",
+        // },
+
         { title: "ออกจากระบบ", icon: "mdi-logout" },
       ],
 
