@@ -46,7 +46,7 @@
             <v-text-field
               type="date"
               outlined
-              label="วัน/เดือน/ปี"
+              label="เดือน/วัน/ปี"
               v-model="date"
             ></v-text-field>
           </div>
