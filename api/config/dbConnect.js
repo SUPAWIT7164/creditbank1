@@ -4,7 +4,7 @@ const pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'root',
   password: '',
-  database: 'credit_bank',
+  database: 'creditbank',
   timezone: '+07:00',
 })
 

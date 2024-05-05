@@ -23,6 +23,26 @@ export default {
         return Promise.reject(err);
       });
   },
+  addPeoplePass({ commit }, data) {
+    return this.$axios
+      .$post("api/sub/addPeoplePass", data)
+      .then((response) => {
+        return Promise.resolve(response);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  },
+  byIdCard({ commit }, data) {
+    return this.$axios
+      .$post("api/sub/byIdCard", data)
+      .then((response) => {
+        return Promise.resolve(response);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  },
   approveSub({ commit }, data) {
     return this.$axios
       .$post("api/sub/approveSub", data)
@@ -43,6 +63,16 @@ export default {
         return Promise.reject(err);
       });
   },
+  genCer({ commit }, data) {
+    return this.$axios
+      .$post("api/sub/genCer", data)
+      .then((response) => {
+        return Promise.resolve(response);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  },
   listSub({ commit }, data) {
     return this.$axios
       .$get("api/sub/listSub_nonap")
@@ -55,7 +85,17 @@ export default {
   },
   showPopSub({ commit }, data) {
     return this.$axios
-      .$get("api/sub/showPopSub")
+      .$get("api/sub/ShowPopData")
+      .then((response) => {
+        return Promise.resolve(response);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  },
+  selectSByAj({ commit }, data) {
+    return this.$axios
+      .$get("api/sub/selectSByAj")
       .then((response) => {
         return Promise.resolve(response);
       })

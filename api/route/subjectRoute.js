@@ -6,6 +6,10 @@ const {
   handleApproveSub,
   handleCancelSub,
   handleShowPopData,
+  handleSelectSByAJ,
+  handladdPeoplePass,
+  handlaselectByIdCard,
+  generateBilling
 } = require("../controller/subjectController");
 
 router.post("/addSub", handleAddSubject);
@@ -13,5 +17,9 @@ router.get("/listSub_nonap", handleSelectSubject);
 router.post("/approveSub", handleApproveSub);
 router.post("/cancelSub", handleCancelSub);
 router.get("/ShowPopData", handleShowPopData);
+router.get("/selectSByAj", handleSelectSByAJ);
+router.post("/addPeoplePass", handladdPeoplePass);
+router.post("/byIdCard", handlaselectByIdCard);
+router.post("/genCer", generateBilling);
 
 module.exports = router;

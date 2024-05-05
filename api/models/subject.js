@@ -41,6 +41,21 @@ class SUBJECT {
     const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 1`;
     return sqlcmd(query);
   }
+
+  static selectSubjectByAj() {
+    const query = `SELECT ID, NAMESUBJECT, TEACHERNAME FROM SUBJECT WHERE TEACHERNAME = "AJ.OTP EMAIL"`;
+    return sqlcmd(query);
+  }
+
+  static addPeoplePass(TITLENAME, USERNAME, LASTNAME, IDCARD, SUBJECTS) {
+    const query = `INSERT INTO PASSCER(TITLENAME, USERNAME, LASTNAME, IDCARD, SUBJECT) VALUES ("${TITLENAME}", "${USERNAME}", "${LASTNAME}","${IDCARD}","${SUBJECTS}")`;
+    return sqlcmd(query);
+  }
+
+  static selectCerByUser(IDCARD) {
+    const query = `SELECT * FROM PASSCER WHERE IDCARD = "${IDCARD}"`
+    return sqlcmd(query);
+  }
 }
 
 module.exports = SUBJECT;
