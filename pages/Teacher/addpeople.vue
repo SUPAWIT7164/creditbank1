@@ -52,7 +52,7 @@
         ></v-text-field>
       </v-col>
        <v-col cols="12" class="">
-          <v-btn color="green" block @click="confirm">ยืนยัน</v-btn>
+          <v-btn color="green" block >ยืนยัน</v-btn>
         </v-col>
         </v-row>
     </v-container>

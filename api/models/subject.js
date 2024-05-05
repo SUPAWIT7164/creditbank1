@@ -5,42 +5,38 @@ class SUBJECT {
     Object.assign(this, args);
   }
 
-  static addSubject(
-    NAMESUBJECT,
-    DETAILSUBJECT,
-    DATE,
-    TIME,
-    TOTALSTU,
-    POSTSTATUS,
-    TEACHERNAME
-  ) {
+  static addSubject(NAMESUBJECT, DETAILSUBJECT, DATE, TIME, TOTALSTU, POSTSTATUS, TEACHERNAME) {
     const query = `INSERT INTO SUBJECT(NAMESUBJECT , DETAILSUBJECT, DATE, TIME , TOTALSTU, POSTSTATUS, TEACHERNAME) VALUES ("${NAMESUBJECT}", "${DETAILSUBJECT}", "${DATE}","${TIME}","${TOTALSTU}",${POSTSTATUS}, "${TEACHERNAME}")`;
     return sqlcmd(query);
   }
 
   static selectSubject() {
-    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 0`;
+    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 0`
     return sqlcmd(query);
   }
   static selectSubjectByID(ID) {
-    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 0`;
+    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 0`
     return sqlcmd(query);
   }
 
   static cancelApprove(ID) {
-    const query = `UPDATE SUBJECT SET POSTSTATUS = 2 WHERE ID = ${ID}`;
+    const query = `UPDATE SUBJECT SET POSTSTATUS = 2 WHERE ID = ${ID}`
     return sqlcmd(query);
   }
 
-  static approvePost(ID) {
-    const query = `UPDATE SUBJECT SET POSTSTATUS = 1 WHERE ID = ${ID}`;
+  static approvePost(ID){
+    const query = `UPDATE SUBJECT SET POSTSTATUS = 1 WHERE ID = ${ID}`
     return sqlcmd(query);
   }
 
-  static showPopData() {
-    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 1`;
+  static showPopData(ID) {
+    const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 1`
     return sqlcmd(query);
   }
+//   static showSubData(ID) {
+//     const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 1`
+//     return sqlcmd(query);
+// }
 }
 
 module.exports = SUBJECT;

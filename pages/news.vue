@@ -11,13 +11,13 @@
           v-for="(item, index) in postData"
           :key="index"
         >
-          <v-row class="py-5">
-            <v-col cols="5" class="my-auto">
+          <v-row class="py-5 px-12">
+            <!-- <v-col cols="5" class="my-auto">
               <v-card class="mx-3" rounded="lg">
                 <v-img :src="item.pic" width="auto" />
               </v-card>
         
-            </v-col>
+            </v-col> -->
             <v-col cols="7">
               <v-row no-gutters>
                 <v-col cols="7">
@@ -40,8 +40,15 @@
                     จำนวนผู้ลงสมัครอบรบ: {{ item.total }}
                   </p>
                 </v-col>
-                <v-btn class="" depressed color="amber lighten-1" @click="goHistory"
-            >Certificate</v-btn>
+            <v-col cols="7">
+              <v-btn
+                class="mr-5"
+                depressed
+                color="amber lighten-2"
+                @click="goHistory"
+                >certificate</v-btn
+              >
+            </v-col>
               </v-row>
             </v-col>
           </v-row>
@@ -58,7 +65,7 @@ export default {
     return {
       postData: [
         {
-          pic: require("~/assets/Captureddddddddddddddddd.png"),
+          // pic: require("~/assets/Captureddddddddddddddddd.png"),
           name: "การใช้สมุนไพรในสัตว์",
           teacher:"ผสุ เย็นสบาย",
           location:"Online",

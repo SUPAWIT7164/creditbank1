@@ -41,13 +41,13 @@
           v-for="(item, index) in postData"
           :key="index"
         >
-          <v-row class="py-5">
-            <v-col cols="5" class="my-auto">
+          <v-row class="py-5 px-12">
+            <!-- <v-col cols="5" class="my-auto">
               <v-card class="mx-3" rounded="lg">
                 <v-img :src="item.pic" width="auto" />
               </v-card>
         
-            </v-col>
+            </v-col> -->
             <v-col cols="7">
               <v-row no-gutters>
                 <v-col cols="12">
@@ -64,10 +64,10 @@
                 </v-col>
                 <v-col cols="12" 
                   ><p class="title tX-color">
-                    จำนวนผู้ลงสมัครอบรบ: {{ item.total }}
+                    จำนวนผู้ลงสมัครอบรบ: {{ item.total }} 
                   </p>
                 </v-col>
-                 <v-btn class="" depressed color="success" @click="goHistory"
+                 <v-btn class="" depressed color="success" @click="goSuccess(item)"
             >ลงทะเบียน</v-btn>
               </v-row>
             </v-col>
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations,mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
           ],
          postData: [
         {
-          pic: require("~/assets/Captureddddddddddddddddd.png"),
+          // pic: require("~/assets/Captureddddddddddddddddd.png"),
           name: "การใช้สมุนไพรในสัตว์",
           location:"Online",
           date: "01/02/2024",
@@ -113,10 +113,20 @@ export default {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
     }),
+    //  ...mapActions({
+    //   listSub: "users/showSubDa",
+    // }),
     goDetail() {
       this.$router.push("/users/detailsubject");
     },
+    //  async showSubData() {
+    //   this.postData = await this.listSub();
+    //   console.log(this.postData);
+    // },
   },
+  //  mounted() {
+  //   this.showSubData();
+  // },
 };
 </script>
 
