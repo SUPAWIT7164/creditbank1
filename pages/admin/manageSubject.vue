@@ -48,15 +48,14 @@
           </v-menu>
 
         </v-card-title>
-        <v-img :src="require('~/assets/ai.png')"></v-img>      
-
+        <div style="margin-left: 20px;">
         <v-text>
           <span class="ml-2  white--text "><h2>หัวข้อการอบรม: การอบรมความรู้เบื้องต้นเทคโนโลยี AI</h2> </span>
           <span class="ml-2  white--text "><h2>จำนวนที่นั่ง: 30 คน</h2> </span>
           <span class="ml-2  white--text "><h2>เวลา: 9.00 - 15.00 น.</h2></span>
           <span class="ml-2  white--text "><h2>วัน/เดือน/ปี:  15/04/2024</h2></span>
         </v-text>
-    
+        </div>
     </v-card>
       </v-col>
     </v-row>

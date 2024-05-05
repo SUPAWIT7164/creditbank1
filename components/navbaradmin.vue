@@ -73,11 +73,11 @@ export default {
         //   icon: "mdi-wrench",
         //   to: "/admin/managecer",
         // },
-        {
-          title: "จัดการโพสต์",
-          icon: "mdi-wrench",
-          to: "/admin/manageSubject",
-        },
+        // {
+        //   title: "จัดการโพสต์",
+        //   icon: "mdi-wrench",
+        //   to: "/admin/manageSubject",
+        // },
         // {
         //   title: "เพิ่มเนื้อหาข่าวสาร",
         //   icon: "mdi-wrench",

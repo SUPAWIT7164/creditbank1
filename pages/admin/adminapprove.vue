@@ -3,17 +3,6 @@
     <NavbarAd />
     <v-card depressed color="light-green lighten-4 ">
       <v-row>
-        <v-col class="">
-          <v-btn
-            class="headline pa-7"
-            width="100%"
-            elevation="5"
-            @click="goadminpage"
-          >
-            <v-icon large>mdi mdi-home</v-icon>กลับสู่หน้าหลักแอดมิน
-          </v-btn>
-        </v-col>
-
         <v-col cols="12">
           <h2 class="display-1 text-center">รายชื่อผู้ขอเปิดสิทธิ์สร้างโพส</h2>
         </v-col>

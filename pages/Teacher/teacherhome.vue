@@ -31,29 +31,22 @@
           v-for="(item, index) in postData"
           :key="index"
         >
-          <v-row class="py-5">
-            <v-col cols="5" class="my-auto">
-              <v-card class="mx-3" rounded="lg">
-                <v-img :src="item.pic" width="auto" />
-              </v-card>
+          <v-row class="px-5 py-5" no-gutters>
+            <v-col cols="12">
+              <p class="title tX-color">
+                ชื่อวิชา: {{ item.DETAILSUBJECT }}
+              </p></v-col
+            >
+            <v-col cols="12"
+              ><p class="title tX-color">วันที่: {{ item.DATE }}</p>
             </v-col>
-            <v-col cols="7">
-              <v-row>
-                <v-col cols="12">
-                  <p class="title tX-color">ชื่อ: {{ item.name }}</p></v-col
-                >
-                <v-col cols="12"
-                  ><p class="title tX-color">วันที่: {{ item.date }}</p>
-                </v-col>
-                <v-col cols="12"
-                  ><p class="title tX-color">เวลา: {{ item.time }}</p>
-                </v-col>
-                <v-col cols="12"
-                  ><p class="title tX-color">
-                    จำนวนผู้ลงสมัครอบรบ: {{ item.total }}
-                  </p>
-                </v-col>
-              </v-row>
+            <v-col cols="12"
+              ><p class="title tX-color">เวลา: {{ item.TIME }}</p>
+            </v-col>
+            <v-col cols="12"
+              ><p class="title tX-color">
+                จำนวนผู้ลงสมัครอบรม: {{ item.TOTALSTU }}
+              </p>
             </v-col>
           </v-row>
         </v-card>

@@ -103,4 +103,15 @@ export default {
         return Promise.reject(err);
       });
   },
+
+  // showSubDa({ commit }, data) {
+  //   return this.$axios
+  //     .$get("api/sub/showShowSub")
+  //     .then((response) => {
+  //       return Promise.resolve(response);
+  //     })
+  //     .catch((err) => {
+  //       return Promise.reject(err);
+  //     });
+  // },
 };

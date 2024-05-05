@@ -10,6 +10,7 @@ const {
   handladdPeoplePass,
   handlaselectByIdCard,
   generateBilling
+  // handleShowSubData,
 } = require("../controller/subjectController");
 
 router.post("/addSub", handleAddSubject);
@@ -22,4 +23,6 @@ router.post("/addPeoplePass", handladdPeoplePass);
 router.post("/byIdCard", handlaselectByIdCard);
 router.post("/genCer", generateBilling);
 
+router.get("/showPopSub", handleShowPopData);
+// router.get("/showShowSub", handleShowSubData);
 module.exports = router;
