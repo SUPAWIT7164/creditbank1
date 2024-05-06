@@ -23,6 +23,6 @@ router.post("/addPeoplePass", handladdPeoplePass);
 router.post("/byIdCard", handlaselectByIdCard);
 router.post("/genCer", generateBilling);
 
-router.get("/showPopSub", handleShowPopData);
+// router.get("/showPopSub", handleShowPopData);
 // router.get("/showShowSub", handleShowSubData);
 module.exports = router;

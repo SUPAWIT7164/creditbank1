@@ -98,7 +98,7 @@ export default {
          postData: [
         {
           // pic: require("~/assets/Captureddddddddddddddddd.png"),
-          name: "การใช้สมุนไพรในสัตว์",
+          name: "การปฐมพยาบาลและการกชีพเบื้องต้นในสัตว์เลี้ยง",
           location:"Online",
           date: "01/02/2024",
           time: "9.00น.- 15.00น.",

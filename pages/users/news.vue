@@ -12,11 +12,16 @@
         :key="index"
       >
         <v-card-text>
-          <h2>วิชาที่ได้รับเกียรติบัตรวิชา {{ item.SUBJECT }}</h2>
+          <h2>วิชาที่ผ่านการอบรม {{ item.SUBJECT }}</h2>
           <br />
           {{ item.TITLENAME + " " + item.USERNAME + " " + item.LASTNAME }}
         </v-card-text>
-        <v-btn @click="dowloadPdf(item, index)">ดาวโหลด Certificate</v-btn>
+        <v-btn
+          depressed
+          color="amber lighten-2"
+          @click="dowloadPdf(item, index)"
+          >Certificate</v-btn
+        >
       </v-card>
     </v-col>
   </div>
@@ -28,7 +33,7 @@ export default {
   data() {
     return {
       cerData: [],
-      idCard: "1111111111111",
+      idCard: "5555555555555",
     };
   },
   mounted() {
@@ -54,9 +59,8 @@ export default {
     async dowloadPdf(item) {
       // this.LOADER(true);
       console.log(item);
-      const sname = item.SUBJECTNAME
-      await this.printPdf({ data: item })
-      .then(async (res) => {
+      const sname = item.SUBJECTNAME;
+      await this.printPdf({ data: item }).then(async (res) => {
         const { file, name } = res;
         console.log(file);
         if ((res.statusCode = "ok")) {
@@ -65,16 +69,13 @@ export default {
           for (let i = 0; i < binaryString.length; i++) {
             bytes[i] = binaryString.charCodeAt(i);
           }
-
           const pdfBlob = new Blob([bytes], { type: "application/pdf" });
           const pdfUrl = window.URL.createObjectURL(pdfBlob);
-
           const downloadLink = document.createElement("a");
           downloadLink.href = pdfUrl;
-          downloadLink.download =  name+".pdf";
+          downloadLink.download = name + ".pdf";
           document.body.appendChild(downloadLink);
           downloadLink.click();
-
           setTimeout(() => {
             window.URL.revokeObjectURL(pdfUrl);
             document.body.removeChild(downloadLink);
@@ -83,19 +84,16 @@ export default {
           console.error("error");
         }
       });
-
       this.$swal({
         title: "รายการสำเร็จ",
         icon: "success",
         showCancelButton: false,
         timer: 2000,
       });
-
       // this.LOADER(false);
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

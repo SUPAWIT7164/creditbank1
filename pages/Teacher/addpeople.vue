@@ -37,7 +37,7 @@
           <v-text-field
             class=""
             outlined
-            label="เบขบัตรประชาชน"
+            label="เลขบัตรประชาชน"
             v-model="IDCARD"
           ></v-text-field>
         </v-col>
