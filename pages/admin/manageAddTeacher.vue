@@ -1,6 +1,6 @@
 <template>
   <div id="bg-image" :style="{ backgroundImage: `url(${backgroundUrl})` }">
-    <Navbar />
+    <Navbaradmin />
     <v-row no-gutters>
       <v-col class="">
         <v-btn class="headline pa-7" width="100%" elevation="5" @click="goHome">
@@ -89,12 +89,12 @@
               <v-col cols="12" md="2" class="px-2">
                 <v-select
                   outlined
-                  label="ระดับการศึกษา"
+                  label="สถานะ"
                   :items="levelClass"
                   item-text="name"
                   item-value="name"
                   v-model="levelC"
-                  :rules="[(v) => !!v || 'กรุณาเลือกระดับการศึกษา']"
+                  :rules="[(v) => !!v || 'กรุณาใส่สถานะ']"
                 ></v-select>
               </v-col>
               <v-col cols="6" md="5" class="px-2">
@@ -113,14 +113,14 @@
                   :rules="[(v) => !!v || 'กรุณากรอกเบอร์โทรศัพท์']"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" md="12" class="px-2">
+              <!-- <v-col cols="12" md="12" class="px-2">
                 <v-text-field
                   outlined
                   label="ชื่อสถานที่ทำงาน / สถานศึกษา*"
                   v-model="SCHOOL"
                   :rules="[(v) => !!v || 'กรุณากรอกสถานที่ทำงานหรือสถานศึกษา']"
                 ></v-text-field>
-              </v-col>
+              </v-col> -->
               <v-col cols="12" md="12" class="px-2">
                 <v-text-field
                   outlined
@@ -173,7 +173,7 @@
                   {{ this.textDD }}
                 </div>
               </v-col> -->
-              <v-col cols="6" md="5" class="px-2">
+              <!-- <v-col cols="6" md="5" class="px-2">
                 <v-text-field
                   outlined
                   label="เลขบัตรประจำตัวประชาชน"
@@ -181,7 +181,7 @@
                   :max="13"
                   :rules="[(v) => !!v || 'กรุณากรอกเลขบัตรประจำตัวประชาชน']"
                 ></v-text-field>
-              </v-col>
+              </v-col> -->
               <v-col cols="12" class="px-2">
                 <v-btn
                   width="100%"
@@ -220,31 +220,45 @@ export default {
       },
       show1: false,
       show2: false,
-      buttonDisabled: true,
+      buttonDisabled: false,
       backgroundUrl,
       titleName: null,
       titleNameEng: null,
       titleList: [
         {
-          name: "นาย",
+          name: "อาจารย์",
         },
         {
-          name: "นาง",
+          name: "ดร.",
         },
         {
-          name: "นางสาว",
+          name: "ผศ.",
+        },
+           {
+          name: "รศ.",
+        },
+             {
+          name: "ศ.",
         },
       ],
       titleListEng: [
         {
           name: "Mr.",
         },
-        {
-          name: "Mrs.",
+         {
+          name: "Miss.",
         },
         {
-          name: "Miss",
+          name: "Dr.",
         },
+        {
+          name: "Asst.",
+        },
+         {
+          name: "Prof.",
+        },
+        
+
       ],
       FIRSTNAME: "",
       LASTNAME: "",
@@ -256,50 +270,23 @@ export default {
       levelClass: [
         {
           id: 1,
-          name: "มัธยมศึกษาตอนต้น",
+          name: "อาจารย์",
         },
-        {
-          id: 2,
-          name: "มัธยมศึกษาตอนปลาย",
-        },
-        {
-          id: 3,
-          name: "ปวช.",
-        },
-        {
-          id: 4,
-          name: "ปวส.",
-        },
-        {
-          id: 5,
-          name: "อนุปริญญา",
-        },
-        {
-          id: 6,
-          name: "ปริญญาตรี",
-        },
-        {
-          id: 7,
-          name: "ปริญญาโท",
-        },
-        {
-          id: 8,
-          name: "ปริญญาเอก",
-        },
+     
       ],
       levelC: "",
       EMAIL: "",
       TEL: "",
-      SCHOOL: "",
+      // SCHOOL: "",
       file: null,
       files: [],
-      subjectList: [
-        {
-          id: 1,
-          subject: "วิชาการเขียนโปรแกรมเบื้องต้น สาขาวิทยาการคอมพิวเตอร์",
-          time: "วันเสาร์ ที่ 1 เมษายน 13.00 น.-15.00 น.",
-        },
-      ],
+      // subjectList: [
+      //   {
+      //     id: 1,
+      //     subject: "วิชาการเขียนโปรแกรมเบื้องต้น สาขาวิทยาการคอมพิวเตอร์",
+      //     time: "วันเสาร์ ที่ 1 เมษายน 13.00 น.-15.00 น.",
+      //   },
+      // ],
       subject: "",
       subjectTime: "",
       comment: "",
@@ -337,7 +324,7 @@ export default {
       LOADER: "users/SET_LOADER",
     }),
     ...mapActions({
-      registerData: "users/registerData",
+      regisTea: "users/registerTea",
     }),
     confirmPasswordRule(value) {
       if (value !== this.PASSWORD) {
@@ -405,21 +392,19 @@ export default {
           title: "กรุณากรอกข้อมูลให้ครบถ้วน",
         });
       } else {
-        this.registerData({
+        this.regisTea({
           Title: this.titleName,
           Name: this.FIRSTNAME,
           Lastname: this.LASTNAME,
           Titleeng: this.titleNameEng,
           Nameeng: this.FIRSTNAMEENG,
           Lastnameeng: this.LASTNAMEENG,
-          Levelc: this.levelC,
-          IDCard: this.IDCard,
+          // Levelc: this.levelC,
+          // IDCard: this.IDCard,
           Username: this.USERNAME,
-          password: this.PASSWORD,
+          Password: this.PASSWORD,
           Tel: this.TEL,
-          School: this.SCHOOL,
           // FILE: this.file,
-          Role: "user",
           Email: this.EMAIL,
         })
           .then(() => {
@@ -441,7 +426,7 @@ export default {
       }
     },
     goHome() {
-      this.$router.push("/");
+      this.$router.push("/admin/adminapprove");
       this.citizenID = "";
     },
   },

@@ -16,8 +16,9 @@
             <v-text-field
               class="mt-1 mx-10"
               outlined
-              label="เพิ่มห้วการอบรม"
+              label="เพิ่มหัวการอบรม"
               v-model="nameSubject"
+              :rules="[(v) => !!v || 'กรุณากรอกหัวการอบรม']"
             ></v-text-field>
           </v-card>
         </v-col>
@@ -37,6 +38,7 @@
               outlined
               label="เพิ่มข้อมูลรายวิชา"
               v-model="detailSub"
+              :rules="[(v) => !!v || 'กรุณากรอกข้อมูลรายวิชา']"
             >
             </v-text-field>
           </v-card>
@@ -48,6 +50,7 @@
               outlined
               label="เดือน/วัน/ปี"
               v-model="date"
+              :rules="[(v) => !!v || 'กรุณากรอก เดือน/วัน/ปี']"
             ></v-text-field>
           </div>
         </v-col>
@@ -57,6 +60,7 @@
               outlined
               label="กำหนดจำนวนผู้เรียน"
               v-model="totalStu"
+              :rules="[(v) => !!v || 'กรุณากรอกจำนวนผู้เรียน']"
             ></v-text-field>
           </div>
         </v-col>
@@ -67,6 +71,7 @@
               outlined
               label="เวลาเริ่มอบรม"
               v-model="time"
+              :rules="[(v) => !!v || 'กรุณากรอกเวลาเริ่มอบรม']"
             ></v-text-field>
           </div>
         </v-col>

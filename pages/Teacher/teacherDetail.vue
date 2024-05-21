@@ -17,16 +17,16 @@
                   ><div class="block-d">15000000000</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
-                  ><div class="block-d-1">ชื่อ :</div></v-col
+                  ><div class="block-d-1">ชื่อ-สกุล :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">อจ.ดร พสุ</div></v-col
+                  ><div class="block-d">อจ.ดร พสุ เย็นสบาย</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">ชื่ออังกฤษ :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">Mr. pasu bunord</div></v-col
+                  ><div class="block-d">Mr. pasu yeansay</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">เบอร์ติดต่อ:</div></v-col

@@ -23,6 +23,7 @@
             outlined
             label="ชื่อ"
             v-model="USERNAME"
+             :rules="[(v) => !!v || 'กรอกชื่อให้ถูกต้อง']"
           ></v-text-field>
         </v-col>
         <v-col cols="5" md="5" lg="5" class="px-2">
@@ -31,6 +32,7 @@
             outlined
             label="นามสกุล"
             v-model="LASTNAME"
+             :rules="[(v) => !!v || 'กรอกนามสกุลให้ถูกต้อง']"
           ></v-text-field>
         </v-col>
         <v-col cols="6" md="6" lg="6" class="px-2">
@@ -39,6 +41,7 @@
             outlined
             label="เลขบัตรประชาชน"
             v-model="IDCARD"
+             :rules="[(v) => !!v || 'กรอกเลขบัตรประชาชนให้ถูกต้อง']"
           ></v-text-field>
         </v-col>
         <v-col cols="6" md="6" lg="6" class="px-2">
@@ -49,6 +52,7 @@
             item-text="NAMESUBJECT"
             item-value="NAMESUBJECT"
             v-model="SUBJECT"
+
           ></v-select>
         </v-col>
 

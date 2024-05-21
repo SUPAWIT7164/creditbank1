@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" v-if="!GET_LOGIN">
     <v-app-bar color="1E1E1E" dark>
       <v-toolbar-title>
         <v-img
@@ -11,13 +11,14 @@
         </v-img>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <div class="">
-        <button class="mr-10" @click="teacherhome">หน้าหลัก</button>
-        <button class="mr-10" @click="addPost">เพิ่มกำหนดการอบรม</button>
-        <button class="mr-10" @click="addpeople">
-          เพิ่มรายชื่อผู้ผ่านเกณฑ์
-        </button>
+      <div class="" v-if="!GET_LOGIN">
+        <button class="mr-10" @click="userhomepage">หน้าหลัก</button>
+        <button class="mr-10" @click="userpress">ข่าวประชาสัมพันธ์</button>
+        <button class="mr-10" @click="usernews">การอบรม</button>
+        <button class="mr-10" @click="userabout">เกี่ยวกับเรา</button>
       </div>
+      
+    
       <v-menu
         bottom
         min-width="100px"
@@ -55,7 +56,7 @@
                 depressed
                 rounded
                 text
-                @click="profiletea"
+                @click="profile"
               >
                 ข้อมูลผู้ใช้
               </v-btn>
@@ -72,7 +73,9 @@
           </v-list-item-content>
         </v-card>
       </v-menu>
-      <!-- <v-btn depressed color="success" @click="login"
+   
+
+      <!-- <v-btn depressed color="success" @click="login" v-if="!GET_LOGIN"
         >เข้าสู่ระบบ | Log in</v-btn
       > -->
     </v-app-bar>
@@ -82,12 +85,12 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: "navbarteacher",
+  name: "navbaruser",
    data: () => ({
       user: {
-        initials: 'PY',
-        fullName: 'Pasu yeansbay',
-        email: 'Pasu.yeansbay@gmail.com',
+        initials: 'JD',
+        fullName: 'John Doe',
+        email: 'john.doe@doe.com',
       },
     }),
   computed: {
@@ -96,20 +99,23 @@ export default {
     }),
   },
   methods: {
-    teacherhome() {
-      this.$router.push("/Teacher/teacherhome");
+    userhomepage() {
+      this.$router.push("/users/userpage");
     },
-    addPost() {
-      this.$router.push("/Teacher/addPost");
+    userpress() {
+      this.$router.push("/users/pressreleaseuser");
     },
-    addpeople() {
-      this.$router.push("/Teacher/addpeople");
+    usernews() {
+      this.$router.push("/users/news");
+    },
+    userabout() {
+      this.$router.push("/users/aboutuser");
     },
     login() {
       this.$router.push("/login");
     },
-     profiletea(){
-    this.$router.push("/Teacher/teacherDetail");
+    profile(){
+    this.$router.push("/users/profile");
     },
     exit(){
   this.$swal({
@@ -127,7 +133,9 @@ export default {
       this.$router.push("/");
         } 
    });
-    },
+  },
   },
 };
 </script>
+
+<style></style>

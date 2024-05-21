@@ -78,11 +78,11 @@ export default {
         //   icon: "mdi-wrench",
         //   to: "/admin/manageSubject",
         // },
-        // {
-        //   title: "เพิ่มเนื้อหาข่าวสาร",
-        //   icon: "mdi-wrench",
-        //   to: "/admin/manageNews",
-        // },
+        {
+          title: "เพิ่มข้อมูลอาจารย์",
+          icon: "mdi-wrench",
+          to: "/admin/manageAddTeacher",
+        },
 
         { title: "ออกจากระบบ", icon: "mdi-logout" },
       ],

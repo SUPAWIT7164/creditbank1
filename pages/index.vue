@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations,mapActions } from "vuex";
 export default {
   data: () => ({
     model: 0,
@@ -79,11 +79,26 @@ export default {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
     }),
-    goSubject() {
-      this.$router.push("/subject");
-    },
+    ...mapActions({
+// gotoLogin "login",
+    }),
+    goSubject(){
+  this.$swal({
+        title: "กรุณาเข้าสู่ระบบ",
+        icon: "warning",
+        position: "center",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "ยืนยัน",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+      this.$router.push("/login");
+        } 
+   });
   },
   mounted() {},
+},
 };
+
 </script>
+
 <style scoped></style>

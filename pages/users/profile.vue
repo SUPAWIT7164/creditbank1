@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <navbar />
+    <navbaruser />
     <v-row no-gutters class="mt-5">
       <v-col class="mx-2">
         <v-row>
@@ -56,11 +56,12 @@
 </template>
 
 <script>
-import navbar from '../components/navbar.vue';
+// import navbar from '../../components/navbar.vue';
+import Navbaruser from '../../components/navbaruser.vue';
 export default {
-  components: { navbar },
+  components: { Navbaruser },
   component: {
-    navbar,
+    Navbaruser,
   },
   data() {
     return {};

@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <Navbar />
+    <Navbaruser />
     <p class="display-2 text-center mt-10">การอบรมที่ผ่านมา</p>
     <v-col cols="12">
       <v-card
@@ -12,11 +12,11 @@
         :key="index"
       >
         <v-card-text>
-          <h2>วิชาที่ผ่านการอบรม {{ item.SUBJECT }}</h2>
+          <h2>ผ่านการอบรมในหลักสูตร {{ item.SUBJECT }}</h2>
           <br />
           {{ item.TITLENAME + " " + item.USERNAME + " " + item.LASTNAME }}
         </v-card-text>
-        <v-btn
+        <v-btn class="mx-5 mb-5"
           depressed
           color="amber lighten-2"
           @click="dowloadPdf(item, index)"

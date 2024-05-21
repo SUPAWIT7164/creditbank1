@@ -1,6 +1,6 @@
 <template>
     <div>
-       <Navbar />
+       <Navbaruser />
        <v-col cols="12" class="mt-8">
       <p class="display-2 text-center">ข้อมูลหลักสูตร</p>
     </v-col>
