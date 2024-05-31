@@ -1,6 +1,6 @@
 <template>
   <div class="mt-8">
-    <v-navigation-drawer permanent app v-if="GET_LOGIN" color="1E1E1E" dark>
+    <v-navigation-drawer permanent app v-if="GET_LOGIN" color="green lighten-1" dark>
       <v-toolbar-title>
         <v-img
           max-height="80"
@@ -11,7 +11,7 @@
         </v-img>
       </v-toolbar-title>
       <v-divider></v-divider>
-      <v-list nav dense v-for="(item, i) in items" :key="i">
+      <v-list nav dense v-for="(item, i) in items" :key="i" color="green lighten-1">
         <v-list-item
           :key="item.title"
           class="list-item-shadow"
@@ -68,11 +68,11 @@ export default {
           icon: "mdi-wrench",
           to: "/admin/manageusers",
         },
-        // {
-        //   title: "ดูจำนวนผู้ใช้งานในระบบ",
-        //   icon: "mdi-wrench",
-        //   to: "/admin/managecer",
-        // },
+        {
+          title: "เพิ่มข่าวประชาสัมพันธ์",
+          icon: "mdi-wrench",
+          to: "/admin/managenews",
+        },
         // {
         //   title: "จัดการโพสต์",
         //   icon: "mdi-wrench",

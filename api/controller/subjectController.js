@@ -320,6 +320,15 @@ const generateBilling = async(req, res, next) => {
         res.status(500).json({ message: "Error generating billing report" });
     }
 };
+const handlaselectDetail = async(req, res) => {
+    const { detail } = req.body;
+    try {
+        const result = await SUBJECT.showSubDetail(detail);
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 module.exports = {
     handleAddSubject,
@@ -331,4 +340,5 @@ module.exports = {
     handladdPeoplePass,
     handlaselectByIdCard,
     generateBilling,
+    handlaselectDetail,
 };

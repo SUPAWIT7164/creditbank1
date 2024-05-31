@@ -1,6 +1,6 @@
 <template>
   <div>
-     <Navbar />
+     <Navbaruser/>
     <h1 class="my-10 text-center">ข้อมูลหลักสูตร</h1>
     <v-card
       depressed
@@ -29,7 +29,7 @@
           >
         </v-col>
         <v-col cols="12" class="text-center mb-5">
-          <v-btn class="" depressed color="success">ยืนยัน</v-btn>
+          <v-btn class="" depressed color="success" @click="goSelect">ยืนยัน</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -42,29 +42,23 @@
           :key="index"
         >
           <v-row class="py-5 px-12">
-            <!-- <v-col cols="5" class="my-auto">
-              <v-card class="mx-3" rounded="lg">
-                <v-img :src="item.pic" width="auto" />
-              </v-card>
-        
-            </v-col> -->
             <v-col cols="7">
               <v-row no-gutters>
                 <v-col cols="12">
-                  <p class="title tX-color">ชื่อ: {{ item.name }}</p></v-col
+                  <p class="title tX-color">ชื่อ: {{ item.NAMESUBJECT }}</p></v-col
                 >
                 <v-col cols="12">
-                  <p class="title tX-color">สถานที่เรียน: {{ item.location }}</p>
+                  <p class="title tX-color">อาจารย์ผู้สอน: {{ item.TEACHERNAME }}</p>
                   </v-col>
                 <v-col cols="12"
-                  ><p class="title tX-color">วันที่: {{ item.date }}</p>
+                  ><p class="title tX-color">วันที่: {{ item.DATE }}</p>
                 </v-col>
                 <v-col cols="12"
-                  ><p class="title tX-color">เวลา: {{ item.time }}</p>
+                  ><p class="title tX-color">เวลา: {{ item.TIME }}</p>
                 </v-col>
                 <v-col cols="12" 
                   ><p class="title tX-color">
-                    จำนวนผู้ลงสมัครอบรบ: {{ item.total }} 
+                    จำนวนผู้ลงสมัครอบรบ: {{ item.TOTALSTU }} 
                   </p>
                 </v-col>
                  <v-btn class="" depressed color="success" @click="goSuccess(item)"
@@ -95,17 +89,7 @@ export default {
           name: "การดูแลแมวเบื้องต้น",
         },
           ],
-         postData: [
-        {
-          // pic: require("~/assets/Captureddddddddddddddddd.png"),
-          name: "การปฐมพยาบาลและการกชีพเบื้องต้นในสัตว์เลี้ยง",
-          location:"Online",
-          date: "01/02/2024",
-          time: "9.00น.- 15.00น.",
-          total: "1/20 คน",
-      
-        },
-      ]    
+         postData: []    
     }
 
   },
@@ -113,16 +97,31 @@ export default {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
     }),
-    //  ...mapActions({
-    //   listSub: "users/showSubDa",
-    // }),
-    goDetail() {
-      this.$router.push("/users/detailsubject");
+
+     ...mapActions({
+      Detailselect: "users/Detailselect",
+    }),
+      goSuccess(item){
+      this.$swal({
+            title: "ลงทะเบียนสำเร็จ",
+            icon: "success",
+            showCancelButton: false,
+          });
+      },
+      async goSelect(){
+       this.postData = await this.Detailselect({detail:this.detail});
+      console.log(this.postData);  
+
+      },
+
+      goDetail(){
+        this.$router.push("/users/detailsubject");
+      },
+     
+     async showSubData() {
+      this.postData = await this.Detailselect({detail:this.detail});
+      console.log(this.postData);
     },
-    //  async showSubData() {
-    //   this.postData = await this.listSub();
-    //   console.log(this.postData);
-    // },
   },
   //  mounted() {
   //   this.showSubData();

@@ -65,16 +65,7 @@
 </template>
 
 <script>
-import { db } from "../plugins/firebaseInit";
-import {
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  doc,
-  where,
-} from "firebase/firestore";
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   name: "login",
   data() {
@@ -94,87 +85,53 @@ export default {
       userRole: null,
     };
   },
-  // watch: {
-  //   citizenID(newVal) {
-  //     if (newVal.length === 13) {
-  //       this.citizenID =
-  //         newVal.slice(0, 3) +
-  //         "-" +
-  //         newVal.slice(3, 6) +
-  //         "-" +
-  //         newVal.slice(6, 10) +
-  //         "-" +
-  //         newVal.slice(10, 12) +
-  //         "-" +
-  //         newVal.slice(12);
-  //     }
-  //   },
-  // },
   methods: {
     ...mapMutations({
       SET_USER: "users/SET_USER",
     }),
+    ...mapActions({
+      Checkuse: "users/Logincheck",
+    }),
     goHome() {
       this.$router.push("/");
       this.citizenID = "";
-    }, 
-    async checkUser() {
-      // try {
-      //   const querySnapshot = query(
-      //     collection(db, "users"),
-      //     where("USERNAME", "==", this.USERNAME),
-      //     where("PASSWORD", "==", this.PASSWORD)
-      //   );
-      //   const dataUser = await getDocs(querySnapshot);
-
-      //   dataUser.forEach((doc) => {
-      //     console.log(doc.data());
-      //     this.SET_USER(doc.data());
-      //     this.userRole = doc.data().ROLE
-      //   });
-
-      //   if (!dataUser.empty && this.userRole === "admin") {
-      //     console.log("พบข้อมูลผู้ใช้");
-      //     this.$swal({
-      //       position: "center",
-      //       icon: "success",
-      //       title: "เข้าสู่ระบบสำเร็จ",
-      //       showConfirmButton: false,
-      //       timer: 1500,
-      //     });
-      //     this.$router.push({ path: "/admin/adminpage" });
-      //   } else if (!dataUser.empty && this.userRole === "user") {
-      //     this.$swal({
-      //       position: "center",
-      //       icon: "success",
-      //       title: "เข้าสู่ระบบสำเร็จ",
-      //       showConfirmButton: false,
-      //       timer: 1500,
-      //     });
-      //     this.$router.push({ path: "/users/userpage" });
-      //   } else {
-      //     this.$swal({
-      //       icon: "warning",
-      //       title: "ไม่พบข้อมูลผู้ใช้",
-      //       text: "กรุณากรอกข้อมูลให้ถูกต้อง",
-      //     });
-      //     this.USERNAME = null;
-      //     this.PASSWORD = null;
-      //   }
-      // } catch (error) {
-      //   console.error("เกิดข้อผิดพลาดในการตรวจสอบผู้ใช้:", error);
-      // }
-    //     this.$router.push("/Teacher/teacherhome"); 
-    // },
-    //   this.$router.push("/admin/adminapprove"); 
-    // },
-
-      this.$router.push("/users/userpage"); 
     },
-
     goRegister() {
       this.$router.push("/register");
     },
+    // async registerData() {
+    //   this.regisData = await this.registerUser;
+    // },
+    async checkUser() {
+      this.Checkuse({
+        USERNAME: this.USERNAME,
+        PASSWORD: this.PASSWORD,
+      }).then((res) => {
+        this.SET_USER(res);
+        console.log(res);
+        if (res[0].Role == "user") {
+          console.log("a");
+          this.$router.push("/users/userpage");
+        } else if (res[0].Role == "teacher") {
+          this.$router.push("/Teacher/teacherhome");
+        } else if (res[0].Role == "admin") {
+          this.$router.push("/admin/adminapprove");
+        }else{
+          this.$router.push("/admin/adminapprove");
+        }
+        
+      })
+      .catch((error) => {
+        this.$swal({
+          title: "เกิดข้อผิดพลาด",
+          text: `กรุณาตรวจสอบรหัสผ่านให้ถูกต้อง`,
+          icon: "warning",
+        })
+      });
+    },
+  },
+  mounted() {
+    // this.registerData();
   },
 };
 </script>

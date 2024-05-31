@@ -33,7 +33,7 @@
           >
             <v-avatar
               color="brown"
-              size="42"
+              size="35"
             >
               <span class="white--text text-h5">{{ user.initials }}</span>
             </v-avatar>

@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const {
-  handleAddSubject,
-  handleSelectSubject,
-  handleApproveSub,
-  handleCancelSub,
-  handleShowPopData,
-  handleSelectSByAJ,
-  handladdPeoplePass,
-  handlaselectByIdCard,
-  generateBilling
-  // handleShowSubData,
+    handleAddSubject,
+    handleSelectSubject,
+    handleApproveSub,
+    handleCancelSub,
+    handleShowPopData,
+    handleSelectSByAJ,
+    handladdPeoplePass,
+    handlaselectByIdCard,
+    generateBilling,
+    handlaselectDetail // handleShowSubData,
 } = require("../controller/subjectController");
 
 router.post("/addSub", handleAddSubject);
@@ -22,6 +22,7 @@ router.get("/selectSByAj", handleSelectSByAJ);
 router.post("/addPeoplePass", handladdPeoplePass);
 router.post("/byIdCard", handlaselectByIdCard);
 router.post("/genCer", generateBilling);
+router.post("/Selectdetail", handlaselectDetail);
 
 // router.get("/showPopSub", handleShowPopData);
 // router.get("/showShowSub", handleShowSubData);

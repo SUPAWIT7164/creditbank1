@@ -12,3 +12,8 @@
    </ui>
     </div>
 </template>
+<script>
+export default {
+  name: 'UiComponent',
+};
+</script>

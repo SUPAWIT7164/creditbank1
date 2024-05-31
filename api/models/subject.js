@@ -35,7 +35,7 @@ class SUBJECT {
     }
 
     static selectSubjectByAj() {
-        const query = `SELECT ID, NAMESUBJECT, TEACHERNAME FROM SUBJECT WHERE TEACHERNAME = "AJ.OTP EMAIL"`;
+        const query = `SELECT ID, NAMESUBJECT, TEACHERNAME FROM SUBJECT WHERE TEACHERNAME = 'อ.สพ.ญ.ดร.ทิพย์ภาภรณ์ อุปโย'`;
         return sqlcmd(query);
     }
 
@@ -53,10 +53,10 @@ class SUBJECT {
         //   return sqlcmd(query);
         // }
 
-    //   static showSubData(ID) {
-    //     const query = `SELECT * FROM SUBJECT WHERE POSTSTATUS = 1`
-    //     return sqlcmd(query);
-    // }
+    static showSubDetail(detail) {
+        const query = `SELECT * FROM subject WHERE NAMESUBJECT = '${detail}'`
+        return sqlcmd(query);
+    }
 }
 
 module.exports = SUBJECT;

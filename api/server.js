@@ -8,7 +8,7 @@ const corsOptions = require('./config/corsOptions')
 
 // Cross Origin Resource Sharing
 app.use(cors(corsOptions))
-// built-in middleware to handle urlencoded form data
+    // built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({ extended: false }))
 
 // built-in middleware for json
@@ -19,7 +19,8 @@ app.use('/image', express.static(__dirname + '/uploads'))
 //router login and register
 app.use('/reg', require('./route/registerRoute'))
 app.use('/sub', require('./route/subjectRoute'))
-
+app.use('/log', require('./route/loginRoute'))
+app.use('/new', require('./route/newsRoute'))
 
 // app.use(Autenticate)
 

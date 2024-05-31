@@ -113,6 +113,29 @@ export default {
                 return Promise.reject(err);
             });
     },
+    Logincheck({ commit }, data) {
+        return this.$axios
+            .$post("api/log/checkLog", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    Detailselect({ commit }, data) {
+        return this.$axios
+            .$post("api/sub/Selectdetail", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+
+
+
 
     // showSubDa({ commit }, data) {
     //   return this.$axios

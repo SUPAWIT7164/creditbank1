@@ -1,7 +1,7 @@
 <template>
   <div class="">
-    <navbarteacher />
-    <v-container>
+    <NavbarAd />
+     <v-container>
       <v-row>
         <v-col cols="12" class="text-start">
           <h2 class="display-1 t-green text-center">หน้าเพิ่มกำหนดการอบรม</h2>
@@ -43,6 +43,38 @@
             </v-text-field>
           </v-card>
         </v-col>
+          <v-col cols="12" class="text-start">
+         <v-card
+            class="py-10 text-center"
+            width="100%"
+            elevation="8"
+            rounded="xl"
+          >
+            <div>
+    <form @submit.prevent="uploadFile">
+      <input type="file" @change="handleFileUpload" />
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+           </v-card>
+          </v-col>
+          <v-col cols="12" class="text-start">
+          <v-card
+            class="py-10 text-center"
+            width="100%"
+            elevation="8"
+            rounded="xl"
+          >
+            <v-text-field
+              class="mt-1 mx-10"
+              outlined
+              label="เพิ่มหัวข้อย่อยรายวิชา"
+              v-model="detailSub"
+              :rules="[(v) => !!v || 'กรุณากรอกหัวข้อย่อยรายวิชา']"
+            >
+            </v-text-field>
+          </v-card>
+        </v-col>
         <v-col cols="6" class="">
           <div class="mx-auto" style="width: 100%">
             <v-text-field
@@ -54,30 +86,9 @@
             ></v-text-field>
           </div>
         </v-col>
-        <v-col cols="6" class="">
-          <div class="mx-auto" style="width: 100%">
-            <v-text-field
-              outlined
-              label="กำหนดจำนวนผู้เรียน"
-              v-model="totalStu"
-              :rules="[(v) => !!v || 'กรุณากรอกจำนวนผู้เรียน']"
-            ></v-text-field>
-          </div>
-        </v-col>
-        <v-col cols="6" class="">
-          <div class="mx-auto" style="width: 100%">
-            <v-text-field
-              type="time"
-              outlined
-              label="เวลาเริ่มอบรม"
-              v-model="time"
-              :rules="[(v) => !!v || 'กรุณากรอกเวลาเริ่มอบรม']"
-            ></v-text-field>
-          </div>
-        </v-col>
         <v-col cols="6" class=""> </v-col>
-        <v-col cols="12" class="">
-          <v-btn color="green" block @click="confirmSubject">ยืนยัน</v-btn>
+        <v-col cols="4" class="mx-auto">
+          <v-btn color="green" block @click="confirmNews">ยืนยัน</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -85,57 +96,36 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import NavbarAd from "../../components/navbaradmin";
+import { mapMutations } from "vuex";
 export default {
+  components: {
+    NavbarAd,
+  },
   data() {
     return {
-      nameSubject: null,
-      detailSub: null,
-      date: null,
-      totalStu: null,
-      time: null,
+      ID: null,
+      PATH: null,
+      HEADNEWS: null,
+      SUBNEWS: null,
+      NEWSDETAIL: null,
+      UPLOADTIME: null,
     };
   },
+  created() {
+    this.SET_LOGIN(true);
+  },
   methods: {
-    ...mapActions({
-      addSub: "users/addSub",
+    ...mapMutations({
+      SET_LOGIN: "users/SET_LOGIN",
     }),
-    confirmSubject() {
-      this.addSub({
-        NAMESUBJECT: this.nameSubject,
-        DETAILSUBJECT: this.detailSub,
-        DATE: this.date,
-        TIME: this.time,
-        TOTALSTU: this.totalStu,
-        TEACHERNAME: "อ.สพ.ญ.ดร.ทิพย์ภาภรณ์ อุปโย"
-      })
-        .then(() => {
-          this.$swal({
-            position: "center",
-            icon: "success",
-            title: "ลงทะเบียนสำเร็จ",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          console.log(res);
-          this.nameSubject = null;
-          this.detailSub = null;
-          this.date = null;
-          this.time = null;
-          this.totalStu = null;
-
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
+     goadminpage() {
+      this.$router.push("/admin/adminpage");
+      this.citizenID = "";
+    }, 
   },
 };
 </script>
 
 <style>
-.t-green {
-  color: green !important;
-  font-weight: 700 !important;
-}
 </style>

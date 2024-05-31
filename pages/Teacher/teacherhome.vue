@@ -34,9 +34,14 @@
           <v-row class="px-5 py-5" no-gutters>
             <v-col cols="12">
               <p class="title tX-color">
-                ชื่อวิชา: {{ item.DETAILSUBJECT }}
+                ชื่อวิชา: {{ item.NAMESUBJECT }}
               </p></v-col
             >
+            <v-col cols="12"
+              ><p class="title tX-color">
+                อาจารย์ผู้สอน: {{ item.TEACHERNAME }}
+              </p>
+            </v-col>
             <v-col cols="12"
               ><p class="title tX-color">วันที่: {{ item.DATE }}</p>
             </v-col>
@@ -49,6 +54,16 @@
               </p>
             </v-col>
           </v-row>
+               <v-expansion-panels>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    ข้อมูลรายวิชา
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    {{ item.DETAILSUBJECT }}
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
         </v-card>
       </v-col>
       <v-col cols="12" class="mb-5">
