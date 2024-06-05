@@ -88,9 +88,9 @@ export default {
   name: "navbaruser",
    data: () => ({
       user: {
-        initials: 'JD',
-        fullName: 'John Doe',
-        email: 'john.doe@doe.com',
+        initials: 'PY',
+        fullName: 'pasu yeansabay',
+        email: 'pasu7164@gmail.com',
       },
     }),
   computed: {
@@ -120,7 +120,7 @@ export default {
     exit(){
   this.$swal({
       title: "ออกจากระบบ",
-          text: `กรุณากดปุ่ม "ยีนยัน" เพื่อออกจากระบบ`,
+          text: `กรุณากดปุ่ม "ยืนยัน" เพื่อออกจากระบบ`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
