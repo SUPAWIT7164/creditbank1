@@ -1,34 +1,18 @@
 const { sqlcmd } = require("../config/dbConnect");
 class news {
-    constructor(args) {
-        Object.assign(this, args);
-    }
+  constructor(args) {
+    Object.assign(this, args);
+  }
 
-    // static newsss(
-    //     Name,
-    //     Nameeng,
-    //     Lastname,
-    //     Lastnameeng,
-    //     Username,
-    //     hashPass,
-    //     IDCard,
-    //     School,
-    //     Levelc,
-    //     Tel,
-    //     Title,
-    //     Titleeng,
-    //     Email,
-    //     Role,
+  static saveNews(headNews, detailNews, link, filePath, originalname) {
+    const query = `INSERT INTO news (headNews, detailNews, link, filePath, originalname) VALUES ("${headNews}","${detailNews}", "${link}", "${filePath}", "${originalname}")`;
+    return sqlcmd(query);
+  }
 
-    // ) {
-    //     const query = `INSERT INTO USER (Name,Nameeng,Lastname,Lastnameeng,Username,Password,IDCard,School,Levelc,Tel,Title,Titleeng,Role, Email) VALUES ("${Name}","${Nameeng}","${Lastname}","${Lastnameeng}","${Username}","${hashPass}","${IDCard}","${School}","${Levelc}","${Tel}","${Title}","${Titleeng}","${Role}", "${Email}")`;
-    //     return sqlcmd(query);
-    // }
-    // static profile(USERNAME) {
-    //     const query = `SELECT * FROM USER WHERE USERNAME = "${USERNAME}"`
-    //     return sqlcmd(query);
-    // }
+  static selectNews() {
+    const query = `select * from news`
+    return sqlcmd(query);
+  }
 }
-
 
 module.exports = news;

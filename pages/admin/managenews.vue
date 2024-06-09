@@ -1,115 +1,72 @@
 <template>
   <div class="">
     <NavbarAd />
-     <v-container>
-      <v-row>
-        <v-col cols="12" class="text-start">
-          <h2 class="display-1 t-green text-center">หน้าเพิ่มกำหนดการอบรม</h2>
-        </v-col>
-        <v-col cols="12" class="text-start">
-          <v-card
-            class="py-10 text-center"
-            width="100%"
-            elevation="8"
-            rounded="xl"
-          >
-            <v-text-field
-              class="mt-1 mx-10"
-              outlined
-              label="เพิ่มหัวการอบรม"
-              v-model="nameSubject"
-              :rules="[(v) => !!v || 'กรุณากรอกหัวการอบรม']"
-            ></v-text-field>
-          </v-card>
-        </v-col>
-
-        <!-- <v-col cols="12" class="text-start">
-          <v-img :src="require('~/assets/ai.png')" width="100%" />
-        </v-col> -->
-        <v-col cols="12" class="text-start">
-          <v-card
-            class="py-10 text-center"
-            width="100%"
-            elevation="8"
-            rounded="xl"
-          >
-            <v-text-field
-              class="mt-1 mx-10"
-              outlined
-              label="เพิ่มข้อมูลรายวิชา"
-              v-model="detailSub"
-              :rules="[(v) => !!v || 'กรุณากรอกข้อมูลรายวิชา']"
-            >
-            </v-text-field>
-          </v-card>
-        </v-col>
-          <v-col cols="12" class="text-start">
-         <v-card
-            class="py-10 text-center"
-            width="100%"
-            elevation="8"
-            rounded="xl"
-          >
-            <div>
-    <form @submit.prevent="uploadFile">
-      <input type="file" @change="handleFileUpload" />
-      <button type="submit">Upload</button>
-    </form>
-  </div>
-           </v-card>
-          </v-col>
-          <v-col cols="12" class="text-start">
-          <v-card
-            class="py-10 text-center"
-            width="100%"
-            elevation="8"
-            rounded="xl"
-          >
-            <v-text-field
-              class="mt-1 mx-10"
-              outlined
-              label="เพิ่มหัวข้อย่อยรายวิชา"
-              v-model="detailSub"
-              :rules="[(v) => !!v || 'กรุณากรอกหัวข้อย่อยรายวิชา']"
-            >
-            </v-text-field>
-          </v-card>
-        </v-col>
-        <v-col cols="6" class="">
-          <div class="mx-auto" style="width: 100%">
-            <v-text-field
-              type="date"
-              outlined
-              label="เดือน/วัน/ปี"
-              v-model="date"
-              :rules="[(v) => !!v || 'กรุณากรอก เดือน/วัน/ปี']"
-            ></v-text-field>
-          </div>
-        </v-col>
-        <v-col cols="6" class=""> </v-col>
-        <v-col cols="4" class="mx-auto">
-          <v-btn color="green" block @click="confirmNews">ยืนยัน</v-btn>
-        </v-col>
-      </v-row>
+    <v-container>
+      <v-card>
+        <v-card-title> เพิ่มข่าวประชาสัมพันธ์ </v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="12">
+              <v-text-field
+                v-model="headerNews"
+                outlined
+                dense
+                label="หัวข้อ"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                v-model="detailNews"
+                outlined
+                dense
+                label="เนื้อหา"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                v-model="link"
+                label="ลิงค์ข่าว"
+                outlined
+                dense
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-file-input
+                v-model="file"
+                accept="image/*"
+                @change="handleFile"
+                label="ไฟล์รูปข่าว"
+                outlined
+                dense
+              ></v-file-input>
+            </v-col>
+            <v-col cols="12">
+              <v-btn @click="saveData">บันทึกข้อมูล</v-btn>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <div class="">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, error
+          atque? Autem, suscipit velit odit quos magni veniam fugiat earum!
+        </div>
+      </v-card>
     </v-container>
   </div>
 </template>
 
 <script>
 import NavbarAd from "../../components/navbaradmin";
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   components: {
     NavbarAd,
   },
   data() {
     return {
-      ID: null,
-      PATH: null,
-      HEADNEWS: null,
-      SUBNEWS: null,
-      NEWSDETAIL: null,
-      UPLOADTIME: null,
+      headerNews: "",
+      detailNews: "",
+      file: null,
+      link: null,
     };
   },
   created() {
@@ -119,10 +76,23 @@ export default {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
     }),
-     goadminpage() {
-      this.$router.push("/admin/adminpage");
-      this.citizenID = "";
-    }, 
+    ...mapActions({
+      addNew: "users/addNew",
+    }),
+    async saveData() {
+      const data = new FormData();
+      data.set("FILES", this.file);
+      data.set("headerNews", this.headerNews);
+      data.set("detailNews", this.detailNews);
+      data.set("link", this.link);
+
+      await this.addNew(data).then((res) => {
+        // console.log(res);
+      });
+    },
+    handleFile(e) {
+      this.file = e;
+    },
   },
 };
 </script>
