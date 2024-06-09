@@ -38,14 +38,17 @@
             outlined
             label="รหัสผ่าน"
             placeholder=""
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="passwordRules"
+            :type="show1 ? 'text' : 'password'"
             v-model="PASSWORD"
+            @click:append="show1 = !show1"
           ></v-text-field>
         </v-card-text>
         <v-card-actions class="">
           <v-row>
             <v-col cols="12" class="text-left">
-              <a class="ml-4" @click="checkUser">ลืมรหัสผ่าน</a></v-col
+              <a class="ml-4" @click="goForgot">ลืมรหัสผ่าน</a></v-col
             >
             <v-col cols="6" class="text-left">
               <v-btn class="mb-7 rounded-md" color="success" @click="checkUser"
@@ -70,6 +73,7 @@ export default {
   name: "login",
   data() {
     return {
+      show1: false,
       passwordRules: [
         (v) => !!v || "กรุณากรอกรหัสผ่าน",
         (v) => (v && v.length >= 6) || "กรุณากรอกรหัสผ่าน",
@@ -92,6 +96,9 @@ export default {
     ...mapActions({
       Checkuse: "users/Logincheck",
     }),
+    goForgot(){
+    this.$router.push("/forgot");
+    },
     goHome() {
       this.$router.push("/");
       this.citizenID = "";

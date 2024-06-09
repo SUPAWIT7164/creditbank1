@@ -11,7 +11,7 @@
     <v-container class="d-flex justify-center">
       <v-card max-width="800px" class="mt-10" elevation="8">
         <v-card-title class="ml-2 justify-center display-1"
-          >ลงทะเบียน
+          >ลงทะเบียนอาจารย์ผู้สอน
         </v-card-title>
         <v-card-text class="pb-0">
           <v-form ref="formReg">

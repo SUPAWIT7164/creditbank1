@@ -85,9 +85,9 @@ export default {
   name: "navbarteacher",
    data: () => ({
       user: {
-        initials: 'PY',
-        fullName: 'Pasu yeansbay',
-        email: 'Pasu.yeansbay@gmail.com',
+        initials: 'AD',
+        fullName: 'Apinphorn Dangmai',
+        email: 'apinphorn@gmail.com',
       },
     }),
   computed: {

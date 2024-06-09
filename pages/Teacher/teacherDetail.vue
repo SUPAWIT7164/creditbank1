@@ -9,42 +9,42 @@
           </v-col>
           <v-col cols="12">
             <div class="mx-15">
-              <v-row class="">
-                <v-col cols="3" class="pa-2"
-                  ><div class="block-d-1">เลขที่บัตรประชาชน</div></v-col
-                >
-                <v-col cols="9" class="pa-2"
-                  ><div class="block-d">15000000000</div></v-col
-                >
+              <v-row v-for="(item, index) in regisData" :key="index">
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">ชื่อ-สกุล :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">อจ.ดร พสุ เย็นสบาย</div></v-col
+                  ><div class="block-d">   {{ item.Title }} {{ item.Name }} {{ item.Lastname }} </div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">ชื่ออังกฤษ :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">Mr. pasu yeansay</div></v-col
+                  ><div class="block-d">  {{ item.Titleeng }} {{ item.Nameeng }} {{ item.Lastnameeng }} </div></v-col
+                >
+                  <v-col cols="3" class="pa-2"
+                  ><div class="block-d-1">เลขที่บัตรประชาชน :</div></v-col
+                >
+                <v-col cols="9" class="pa-2"
+                  ><div class="block-d">{{ item.IDCard }}</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">เบอร์ติดต่อ:</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">088888888</div></v-col
+                  ><div class="block-d">{{ item.Tel }}</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">Email</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">Sandee@Email.com</div></v-col
+                  ><div class="block-d">{{ item.Email }}</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">ตำแหน่ง</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
-                  ><div class="block-d">อาจารย์</div></v-col
+                  ><div class="block-d">{{ item.Role }}</div></v-col
                 >
               </v-row>
             </div>
@@ -56,13 +56,38 @@
 </template>
 
 <script>
+import { mapMutations, mapActions, mapGetters } from "vuex";
 import navbarteacher from "../../components/navbarteacher.vue";
 export default {
   component: {
     navbarteacher,
   },
   data() {
-    return {};
+    return {
+      regisData: [
+
+      ],
+    };
+  },
+  computed: {
+    ...mapGetters({
+      GET_USER: 'users/GET_USER',
+    }),
+  },
+  methods: {  
+    ...mapMutations({
+      SET_LOGIN: "users/SET_LOGIN",
+    }),
+    ...mapActions({
+      registerUser: "users/registerData"
+    }),
+    async registerData() {
+      this.regisData = await this.GET_USER;
+      console.log(this.regisData);
+    },
+  },
+  mounted() {
+    this.registerData();
   },
 };
 </script>
