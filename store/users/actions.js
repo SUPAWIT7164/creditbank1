@@ -134,17 +134,14 @@ export default {
             });
     },
 
-
-
-
-    // showSubDa({ commit }, data) {
-    //   return this.$axios
-    //     .$get("api/sub/showShowSub")
-    //     .then((response) => {
-    //       return Promise.resolve(response);
-    //     })
-    //     .catch((err) => {
-    //       return Promise.reject(err);
-    //     });
-    // },
+    CheckEmail({ commit }, data) {
+        return this.$axios
+            .$post("api/reg/regisCheckEmail", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
 };
