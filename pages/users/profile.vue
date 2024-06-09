@@ -72,7 +72,7 @@
                   </v-row>
                 </v-col>
                 <v-col cols="12" class="text-center">
-                  <v-btn @click="genPass()">ใบรับรอง</v-btn>
+                  <v-btn depressed color="success" @click="genPass()">ใบรับรอง</v-btn>
                 </v-col>
               </v-row>
             </div>

@@ -114,7 +114,7 @@ export default {
     exit(){
   this.$swal({
       title: "ออกจากระบบ",
-          text: `กรุณากดปุ่ม "ยีนยัน" เพื่อออกจากระบบ`,
+          text: `กรุณากดปุ่ม "ยืนยัน" เพื่อออกจากระบบ`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

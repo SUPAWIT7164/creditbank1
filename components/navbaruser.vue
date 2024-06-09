@@ -44,7 +44,7 @@
             <div class="mx-auto text-center">
                <v-avatar>
              <img
-        src="https://cdn.vuetifyjs.com/images/john.jpg">
+        src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=mail@ashallendesign.co.uk">
                 <span class="white--text text-h5">{{ user.initials }}</span>
               </v-avatar>
               <h3>{{ user.fullName }}</h3>
@@ -88,9 +88,9 @@ export default {
   name: "navbaruser",
    data: () => ({
       user: {
-        initials: 'PY',
-        fullName: 'pasu yeansabay',
-        email: 'pasu7164@gmail.com',
+        initials: 'SW',
+        fullName: 'sanhaphorn wangmai',
+        email: 'sanhaphorn@gmail.com',
       },
     }),
   computed: {
