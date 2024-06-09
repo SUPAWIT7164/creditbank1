@@ -1,41 +1,52 @@
 const bcrypt = require("bcrypt");
-const news = require('../models/news')
-    // const handleNews = async(req, res) => {
-    //     const { USERNAME, PASSWORD } = req.body;
-    //     console.log(USERNAME, PASSWORD)
+const news = require("../models/news");
+const fs = require("fs").promises;
+const path = require("path");
 
-//     try {
-//         const user = await news.profile(USERNAME);
-//         // if (user.length > 0) {
-//         //     const match = await bcrypt.compare(PASSWORD, user[0].PASSWORD);
-//         // } else {
-//         //     res.sendStatus(401);
-//         // }
-//         console.log(user)
-//         res.status(200).send(user);
-//     } catch (error) {
-//         res.status(500).json({ message: error.message });
-//     }
-// };
-const handleFileUpload = async(req, res) => {
-    const {} = req.body;
-    try {
-        const file = req.file;
+const handleAddNews = async (req, res) => {
+  const file = req.file;
+  const { headerNews, detailNews, link } = req.body;
 
-        if (!file) {
-            return res.status(400).send('No file uploaded.');
-        }
-
-        const filePath = path.join(__dirname, 'uploads', file.filename);
-
-    } catch (error) {
-
+  try {
+    if (!file) {
+      return res.status(400).json({ message: "No file uploaded" });
     }
-}
 
+    // Resolve the path and replace backslashes with forward slashes
+    let correctedPath = path.resolve(file.destination, file.filename);
+    correctedPath = correctedPath.replace(/\\/g, "/");
 
+    const result = await news.saveNews(
+      headerNews,
+      detailNews,
+      link,
+      correctedPath,
+      file.originalname
+    );
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const handleSelectNews = async (req, res) => {
+  try {
+    const result = await news.selectNews();
+
+    for (let i = 0; i < result.length; i++) {
+      const element = result[i];
+      const fileData = await fs.readFile(element.filePath);
+      const base64File = fileData.toString("base64");
+      element.base64File = base64File;
+    }
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 module.exports = {
-    // handleNews,
-    handleFileUpload,
+  handleAddNews,
+  handleSelectNews,
 };

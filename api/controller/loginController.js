@@ -7,12 +7,6 @@ const handleChecklogin = async(req, res) => {
 
     try {
         const user = await Register.profile(USERNAME);
-        // if (user.length > 0) {
-        //     const match = await bcrypt.compare(PASSWORD, user[0].PASSWORD);
-        // } else {
-        //     res.sendStatus(401);
-        // }
-        console.log(user)
         res.status(200).send(user);
     } catch (error) {
         res.status(500).json({ message: error.message });

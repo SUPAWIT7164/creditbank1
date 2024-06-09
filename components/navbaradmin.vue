@@ -83,6 +83,11 @@ export default {
           icon: "mdi-wrench",
           to: "/admin/manageAddTeacher",
         },
+        {
+          title: "จัดการลายเซ็น",
+          icon: "mdi-wrench",
+          to: "/admin/signature",
+        },
 
         { title: "ออกจากระบบ", icon: "mdi-logout" },
       ],

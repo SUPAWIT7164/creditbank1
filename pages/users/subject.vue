@@ -58,7 +58,7 @@
                 </v-col>
                 <v-col cols="12" 
                   ><p class="title tX-color">
-                    จำนวนผู้ลงสมัครอบรบ: {{ item.TOTALSTU }} 
+                    จำนวนผู้ลงสมัครอบรบ: {{ item.TOTALSTU }} / {{item.TOTALUPDATE}} 
                   </p>
                 </v-col>
                  <v-btn class="" depressed color="success" @click="goSuccess(item)"
@@ -100,8 +100,10 @@ export default {
 
      ...mapActions({
       Detailselect: "users/Detailselect",
+      insertRegisSub: "users/insertRegisSub",
     }),
       goSuccess(item){
+        console.log(item);
       this.$swal({
             title: "ลงทะเบียนสำเร็จ",
             icon: "success",

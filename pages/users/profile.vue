@@ -10,15 +10,17 @@
           <v-col cols="12">
             <div class="mx-15">
               <v-row v-for="(item, index) in regisData" :key="index">
-                 <v-col cols="12" 
-                  ><div class="block-d-1 text-center">ข้อมูลผู้เรียน</div></v-col
+                <v-col cols="12"
+                  ><div class="block-d-1 text-center">
+                    ข้อมูลผู้เรียน
+                  </div></v-col
                 >
                 <v-col cols="3" class="pa-2"
                   ><div class="block-d-1">ชื่อ :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
                   ><div class="block-d">
-                    {{ item.Title }} {{ item.Name }} {{ item.Lastname }} 
+                    {{ item.Title }} {{ item.Name }} {{ item.Lastname }}
                   </div></v-col
                 >
                 <v-col cols="3" class="pa-2"
@@ -26,7 +28,8 @@
                 >
                 <v-col cols="9" class="pa-2"
                   ><div class="block-d">
-                    {{ item.Titleeng }} {{ item.Nameeng }} {{ item.Lastnameeng }} 
+                    {{ item.Titleeng }} {{ item.Nameeng }}
+                    {{ item.Lastnameeng }}
                   </div></v-col
                 >
                 <v-col cols="3" class="pa-2"
@@ -53,17 +56,24 @@
                 <v-col cols="9" class="pa-2"
                   ><div class="block-d">{{ item.Role }}</div></v-col
                 >
-                   <v-col cols="12"
-                  ><div class="block-d-1 text-center">ประวัติการเรียน</div></v-col
-                >
-                <v-col cols="3" class="pa-2"
-                  ><div class="block-d-1">วิชา:</div></v-col
-                >
-                <v-col cols="9" class="pa-2"
-                  ><div class="block-d">
-                    {{ item.NAMESUBJECT }} 
+                <v-col cols="12"
+                  ><div class="block-d-1 text-center">
+                    ประวัติการเรียน
                   </div></v-col
                 >
+                <v-col cols="12" v-for="(item, i) in passC" :key="i">
+                  <v-row no-gutters>
+                    <v-col cols="3"><div class="block-d-1">วิชา :</div></v-col>
+                    <v-col cols="9" class="block-d"
+                      ><span class="">
+                        {{ item.SUBJECT }}
+                      </span>
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col cols="12" class="text-center">
+                  <v-btn @click="genPass()">ใบรับรอง</v-btn>
+                </v-col>
               </v-row>
             </div>
           </v-col>
@@ -84,30 +94,69 @@ export default {
   },
   data() {
     return {
-      regisData: [
-
-      ],
+      regisData: [],
+      IDCARD: "1111111111111",
+      passC: [],
     };
   },
   computed: {
     ...mapGetters({
-      GET_USER: 'users/GET_USER',
+      GET_USER: "users/GET_USER",
     }),
   },
-  methods: {  
+  methods: {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
     }),
     ...mapActions({
-      registerUser: "users/registerData"
+      registerUser: "users/registerData",
+      handleSelectConfirm: "users/handleSelectConfirm",
+      handleExpdf: "users/handleExpdf",
     }),
     async registerData() {
       this.regisData = await this.GET_USER;
       console.log(this.regisData);
     },
+    async confirmSub() {
+      this.passC = await this.handleSelectConfirm({ IDCARD: this.IDCARD });
+      console.log(this.passC);
+    },
+    async genPass() {
+      await this.handleExpdf({ data: this.IDCARD }).then(async (res) => {
+        const { file, name } = res;
+        console.log(file);
+        if ((res.statusCode = "ok")) {
+          const binaryString = window.atob(file);
+          const bytes = new Uint8Array(binaryString.length);
+          for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+          const pdfBlob = new Blob([bytes], { type: "application/pdf" });
+          const pdfUrl = window.URL.createObjectURL(pdfBlob);
+          const downloadLink = document.createElement("a");
+          downloadLink.href = pdfUrl;
+          downloadLink.download = name + ".pdf";
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          setTimeout(() => {
+            window.URL.revokeObjectURL(pdfUrl);
+            document.body.removeChild(downloadLink);
+          }, 100);
+        } else {
+          console.error("error");
+        }
+      });
+      this.$swal({
+        title: "รายการสำเร็จ",
+        icon: "success",
+        showCancelButton: false,
+        timer: 2000,
+      });
+    },
   },
   mounted() {
     this.registerData();
+    this.confirmSub();
   },
 };
 </script>

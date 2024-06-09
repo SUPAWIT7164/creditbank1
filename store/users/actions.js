@@ -103,6 +103,36 @@ export default {
                 return Promise.reject(err);
             });
     },
+    allNews({ commit }, data) {
+        return this.$axios
+            .$get("api/new/allNews")
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    getUser({ commit }, data) {
+        return this.$axios
+            .$get("api/sub/getUser")
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    getSignature({ commit }, data) {
+        return this.$axios
+            .$get("api/sub/getSignature")
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
     registerTea({ commit }, data) {
         return this.$axios
             .$post("api/reg/registerTea", data)
@@ -133,10 +163,9 @@ export default {
                 return Promise.reject(err);
             });
     },
-
-    CheckEmail({ commit }, data) {
+    addNew({ commit }, data) {
         return this.$axios
-            .$post("api/reg/regisCheckEmail", data)
+            .$post("api/new/tests", data)
             .then((response) => {
                 return Promise.resolve(response);
             })
@@ -144,4 +173,64 @@ export default {
                 return Promise.reject(err);
             });
     },
+    insertSignature({ commit }, data) {
+        return this.$axios
+            .$post("api/sub/insertSignature", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    deleteSig({ commit }, data) {
+        return this.$axios
+            .$post("api/sub/deleteSig", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    insertRegisSub({ commit }, data) {
+        return this.$axios
+            .$post("api/sub/insertRegisSub", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    handleSelectConfirm({ commit }, data) {
+        return this.$axios
+            .$post("api/sub/handleSelectConfirm", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    handleExpdf({ commit }, data) {
+        return this.$axios
+            .$post("api/sub/handleExpdf", data)
+            .then((response) => {
+                return Promise.resolve(response);
+            })
+            .catch((err) => {
+                return Promise.reject(err);
+            });
+    },
+    // showSubDa({ commit }, data) {
+    //   return this.$axios
+    //     .$get("api/sub/showShowSub")
+    //     .then((response) => {
+    //       return Promise.resolve(response);
+    //     })
+    //     .catch((err) => {
+    //       return Promise.reject(err);
+    //     });
+    // },
 };
