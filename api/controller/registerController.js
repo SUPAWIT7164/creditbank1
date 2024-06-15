@@ -44,39 +44,39 @@ const handleRegister = async(req, res) => {
 };
 
 const handleRegisTeacher = async(req, res) => {
-    // const {
-    //     Title,
-    //     Name,
-    //     Lastname,
-    //     Titleeng,
-    //     Nameeng,
-    //     Lastnameeng,
-    //     Username,
-    //     Password,
-    //     Tel,
-    //     Email,
-    // } = req.body;
+    const {
+        Title,
+        Name,
+        Lastname,
+        Titleeng,
+        Nameeng,
+        Lastnameeng,
+        Username,
+        Password,
+        Tel,
+        Email,
+    } = req.body;
 
-    // try {
-    //     const Role = "teacher";
-    //     const hashPass = await bcrypt.hash(Password, 8);
-    //     const result = await Register.register(
-    //         Title,
-    //         Name,
-    //         Lastname,
-    //         Titleeng,
-    //         Nameeng,
-    //         Lastnameeng,
-    //         Username,
-    //         hashPass,
-    //         Tel,
-    //         Email,
-    //         Role
-    //     );
-    //     res.status(200).send(result);
-    // } catch (error) {
-    //     res.status(500).json({ message: error.message });
-    // }
+    try {
+        const Role = "teacher";
+        const hashPass = await bcrypt.hash(Password, 8);
+        const result = await Register.register(
+            Title,
+            Name,
+            Lastname,
+            Titleeng,
+            Nameeng,
+            Lastnameeng,
+            Username,
+            hashPass,
+            Tel,
+            Email,
+            Role
+        );
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
 
 const handleCheckEmail = async(req, res) => {

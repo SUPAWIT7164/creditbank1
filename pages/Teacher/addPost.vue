@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions,mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -95,6 +95,11 @@ export default {
       totalStu: null,
       time: null,
     };
+  },
+  computed: {
+    ...mapGetters({
+      GET_USER: "users/GET_USER",
+    }),
   },
   methods: {
     ...mapActions({
@@ -107,7 +112,7 @@ export default {
         DATE: this.date,
         TIME: this.time,
         TOTALSTU: this.totalStu,
-        TEACHERNAME: "อ.สพ.ญ.ดร.ทิพย์ภาภรณ์ อุปโย"
+        TEACHERNAME: this.GET_USER[0].Title+" "+this.GET_USER[0].Name+" "+this.GET_USER[0].Lastname
       })
         .then(() => {
           this.$swal({

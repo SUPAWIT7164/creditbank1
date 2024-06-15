@@ -514,7 +514,7 @@ const handleExpdf = async(req, res) => {
             tableTop += itemGap;
         }
 
-        doc.moveDown(10);
+        doc.moveDown(20);
         // เพิ่มลายเซ็น 1
         const signatureWidth = 100;
         const signatureHeight = 50;
