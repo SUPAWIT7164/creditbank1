@@ -72,7 +72,7 @@
                   </v-row>
                 </v-col>
                 <v-col cols="12" class="text-center">
-                  <v-btn @click="genPass()">ใบรับรอง</v-btn>
+                  <v-btn depressed color="success" @click="genPass()">ใบรับรอง</v-btn>
                 </v-col>
               </v-row>
             </div>
@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       regisData: [],
-      IDCARD: "1111111111111",
+      IDCARD: "",
       passC: [],
     };
   },
@@ -119,6 +119,7 @@ export default {
       console.log(this.regisData);
     },
     async confirmSub() {
+      this.IDCARD = this.GET_USER[0].IDCARD
       this.passC = await this.handleSelectConfirm({ IDCARD: this.IDCARD });
       console.log(this.passC);
     },

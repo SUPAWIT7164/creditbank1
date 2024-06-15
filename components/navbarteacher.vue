@@ -30,11 +30,9 @@
             x-large
             v-on="on"
           >
-            <v-avatar
-              color="brown"
-              size="42"
-            >
-              <span class="white--text text-h5">{{ user.initials }}</span>
+            <v-avatar>
+              <img
+        src="https://avatar.iran.liara.run/public/boy?username=Ash">
             </v-avatar>
           </v-btn>
         </template>
@@ -43,8 +41,7 @@
             <div class="mx-auto text-center">
                <v-avatar>
              <img
-        src="https://cdn.vuetifyjs.com/images/john.jpg">
-                <span class="white--text text-h5">{{ user.initials }}</span>
+        src="https://avatar.iran.liara.run/public/boy?username=Ash">
               </v-avatar>
               <h3>{{ user.fullName }}</h3>
               <p class="text-caption mt-1">
@@ -85,7 +82,6 @@ export default {
   name: "navbarteacher",
    data: () => ({
       user: {
-        initials: 'AD',
         fullName: 'Apinphorn Dangmai',
         email: 'apinphorn@gmail.com',
       },
@@ -114,7 +110,7 @@ export default {
     exit(){
   this.$swal({
       title: "ออกจากระบบ",
-          text: `กรุณากดปุ่ม "ยีนยัน" เพื่อออกจากระบบ`,
+          text: `กรุณากดปุ่ม "ยืนยัน" เพื่อออกจากระบบ`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

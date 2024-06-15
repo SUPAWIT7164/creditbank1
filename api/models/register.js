@@ -25,9 +25,13 @@ class Register {
         return sqlcmd(query);
     }
     static profile(USERNAME) {
-        const query = `SELECT * FROM USER WHERE USERNAME = "${USERNAME}"`
-        return sqlcmd(query);
-    }
+            const query = `SELECT * FROM USER WHERE USERNAME = "${USERNAME}"`
+            return sqlcmd(query);
+        }
+        // static checkEmail(Email) {
+        //     const query = `SELECT * FROM USER WHERE Email = "${Email}"`
+        //     return sqlcmd(query);
+        // }
 }
 
 

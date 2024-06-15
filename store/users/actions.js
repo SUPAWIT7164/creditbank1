@@ -1,7 +1,7 @@
 export default {
-  //   checkAuth() {
-  //     return localStorage.getItem("token");
-  //   },
+    //   checkAuth() {
+    //     return localStorage.getItem("token");
+    //   },
 
   registerData({ commit }, data) {
     return this.$axios

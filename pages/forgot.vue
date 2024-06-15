@@ -24,13 +24,13 @@
             class="mt-1"
             outlined
             label="Email"
-            maxlength="13"
+            v-model="Email"
           ></v-text-field>
         </v-card-text>
         <v-card-actions class="">
           <v-row>
             <v-col cols="12" class="text-center">
-              <v-btn class="mb-12 rounded-md" color="success" @click="checkEmail"
+              <v-btn class="mb-12 rounded-md" color="success" @click="resEmail"
                 ><v-icon>mdi mdi-import</v-icon>ยืนยัน</v-btn
               ></v-col
             >
@@ -45,17 +45,36 @@
 <script>
 import {mapMutations,mapActions} from "vuex";
 export default {
-
-
+  name: "forgot",
+  data() {
+  return {
+  Email: null,
+  };
+},
 methods: {
-  // ...mapActions({
-  //  SET_USER: "users/SET_USER",
-    // }),
-  // // ...mapActions({
-  // //   Checkuse: "users/Logincheck",
-  //   }),
-  checkEmail(){
-    this.$router.push("/reset");
+  ...mapMutations({
+   SET_USER: "users/SET_USER",
+    }),
+  ...mapActions({
+    Checkuemail: "users/CheckEmail",
+    }),
+    async resEmail(){
+      this.Checkuemail({
+         Email: this.Email,
+      }).then((res) => {
+        this.SET_USER(res);
+        console.log(res);
+        if (res[0].Email == "Email"){
+        }
+        this.$router.push("/reset");
+      })
+      .catch((error) => {
+        this.$swal({
+          title: "เกิดข้อผิดพลาด",
+          text: `กรุณาตรวจสอบอีเมลของคุณ`,
+          icon: "warning",
+        })
+      });
     },
 },
 };

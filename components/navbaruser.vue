@@ -17,63 +17,42 @@
         <button class="mr-10" @click="usernews">การอบรม</button>
         <button class="mr-10" @click="userabout">เกี่ยวกับเรา</button>
       </div>
-      
-    
-      <v-menu
-        bottom
-        min-width="100px"
-        rounded
-        offset-y
-      >
+
+      <v-menu bottom min-width="100px" rounded offset-y>
         <template v-slot:activator="{ on }">
-          <v-btn
-            icon
-            x-large
-            v-on="on"
-          >
-            <v-avatar
-              color="brown"
-              size="35"
-            >
-              <span class="white--text text-h5">{{ user.initials }}</span>
+          <v-btn icon x-large v-on="on">
+            <v-avatar>
+              <img
+                src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=mail@ashallendesign.co.uk"
+                alt="sanhaphorn wangmai"
+              />
+
             </v-avatar>
           </v-btn>
         </template>
         <v-card>
           <v-list-item-content class="justify-center">
             <div class="mx-auto text-center">
-               <v-avatar>
-             <img
-        src="https://cdn.vuetifyjs.com/images/john.jpg">
-                <span class="white--text text-h5">{{ user.initials }}</span>
+              <v-avatar>
+                <img
+                  src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=mail@ashallendesign.co.uk"
+                />
+                
               </v-avatar>
-              <h3>{{ user.fullName }}</h3>
+              <h3>{{ fullName }}</h3>
               <p class="text-caption mt-1">
-                {{ user.email }}
+                {{ email }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-                @click="profile"
-              >
+              <v-btn depressed rounded text @click="profile">
                 ข้อมูลผู้ใช้
               </v-btn>
               <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-                 @click="exit"
-              >
-                ออกจากระบบ
-              </v-btn>
+              <v-btn depressed rounded text @click="exit"> ออกจากระบบ </v-btn>
             </div>
           </v-list-item-content>
         </v-card>
       </v-menu>
-   
 
       <!-- <v-btn depressed color="success" @click="login" v-if="!GET_LOGIN"
         >เข้าสู่ระบบ | Log in</v-btn
@@ -86,17 +65,19 @@
 import { mapGetters } from "vuex";
 export default {
   name: "navbaruser",
-   data: () => ({
-      user: {
-        initials: 'PY',
-        fullName: 'pasu yeansabay',
-        email: 'pasu7164@gmail.com',
-      },
-    }),
+  data: () => ({
+      fullName: "",
+      email: "",
+  }),
   computed: {
     ...mapGetters({
       GET_LOGIN: "users/GET_LOGIN",
+      GET_USER: "users/GET_USER",
     }),
+  },
+  mounted() {
+    this.fullName = this.GET_USER[0].Name + " " + this.GET_USER[0].Lastname;
+    this.email = this.GET_USER[0].Email;
   },
   methods: {
     userhomepage() {
@@ -114,26 +95,26 @@ export default {
     login() {
       this.$router.push("/login");
     },
-    profile(){
-    this.$router.push("/users/profile");
+    profile() {
+      this.$router.push("/users/profile");
     },
-    exit(){
-  this.$swal({
-      title: "ออกจากระบบ",
-          text: `กรุณากดปุ่ม "ยืนยัน" เพื่อออกจากระบบ`,
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "ยืนยัน",
-          cancelButtonText: "ยกเลิก",
+    exit() {
+      this.$swal({
+        title: "ออกจากระบบ",
+        text: `กรุณากดปุ่ม "ยืนยัน" เพื่อออกจากระบบ`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ยืนยัน",
+        cancelButtonText: "ยกเลิก",
       }).then(async (result) => {
-       if (result.value) {
-            localStorage.clear();
-      this.$router.push("/");
-        } 
-   });
-  },
+        if (result.value) {
+          localStorage.clear();
+          this.$router.push("/");
+        }
+      });
+    },
   },
 };
 </script>

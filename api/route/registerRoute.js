@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const { handleRegister, handleRegisTeacher, } = require('../controller/registerController')
+const { handleRegister, handleRegisTeacher, handleCheckEmail } = require('../controller/registerController')
 
 router.post('/registerData', handleRegister)
 router.post('/registerTea', handleRegisTeacher)
-    // router.post('/registerTea', handleRegisAdmin)
+router.post('/regisCheckEmail', handleCheckEmail)
 
 module.exports = router
