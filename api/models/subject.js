@@ -101,6 +101,11 @@ class SUBJECT {
     const query = `select * from passcer where IDCARD = "${IDCARD}"`
     return sqlcmd(query);
   }
+
+  static selectsj(sj) {
+    const query = `select * from subject where namesubject = '${sj}'`
+    return sqlcmd(query);
+  }
 }
 
 module.exports = SUBJECT;

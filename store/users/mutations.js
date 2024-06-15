@@ -8,4 +8,7 @@ export default {
   SET_LOGIN(state, payload) {
     state.login = payload;
   },
+  SET_SJ(state, payload) {
+    state.sj = payload;
+  },
 };

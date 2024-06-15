@@ -65,7 +65,7 @@
                   <v-row no-gutters>
                     <v-col cols="3"><div class="block-d-1">วิชา :</div></v-col>
                     <v-col cols="9" class="block-d"
-                      ><span class="">
+                      ><span class="" @click="gotoDetail(item.SUBJECT)">
                         {{ item.SUBJECT }}
                       </span>
                     </v-col>
@@ -107,6 +107,7 @@ export default {
   methods: {
     ...mapMutations({
       SET_LOGIN: "users/SET_LOGIN",
+      SET_SJ: "users/SET_SJ",
     }),
     ...mapActions({
       registerUser: "users/registerData",
@@ -152,6 +153,10 @@ export default {
         showCancelButton: false,
         timer: 2000,
       });
+    },
+    gotoDetail(sj) {
+      this.SET_SJ(sj);
+      this.$router.push("/showSubjectDetail");
     },
   },
   mounted() {

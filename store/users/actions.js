@@ -223,6 +223,16 @@ export default {
         return Promise.reject(err);
       });
   },
+  handlesj({ commit }, data) {
+    return this.$axios
+      .$post("api/sub/handlesj", data)
+      .then((response) => {
+        return Promise.resolve(response);
+      })
+      .catch((err) => {
+        return Promise.reject(err);
+      });
+  },
   // showSubDa({ commit }, data) {
   //   return this.$axios
   //     .$get("api/sub/showShowSub")

@@ -568,6 +568,16 @@ const handleExpdf = async (req, res) => {
   }
 };
 
+const handleSelectsj = async (req, res) => {
+  const {sj} = req.body
+  try {
+    const result = await SUBJECT.selectsj(sj);
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   handleAddSubject,
   handleSelectSubject,
@@ -586,4 +596,5 @@ module.exports = {
   handleRegisSub,
   handleSelectConfirm,
   handleExpdf,
+  handleSelectsj
 };

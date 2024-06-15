@@ -18,7 +18,8 @@ const {
     handleDeleteSignature,
     handleRegisSub,
     handleSelectConfirm,
-    handleExpdf
+    handleExpdf,
+    handleSelectsj
 } = require("../controller/subjectController");
 
 router.post("/addSub", handleAddSubject);
@@ -37,6 +38,7 @@ router.post("/deleteSig", handleDeleteSignature);
 router.post("/insertRegisSub", handleRegisSub);
 router.post("/handleSelectConfirm", handleSelectConfirm);
 router.post("/handleExpdf", handleExpdf);
+router.post("/handlesj", handleSelectsj);
 router.post("/insertSignature", uploadImg.single("FILES"),handleInsertSignature);
 
 // router.get("/showPopSub", handleShowPopData);
