@@ -1,6 +1,6 @@
 <template>
   <div class="">
-     <Navbar />
+     <Navbaruser />
     <v-container>
       <v-row>
         <v-col cols="12">

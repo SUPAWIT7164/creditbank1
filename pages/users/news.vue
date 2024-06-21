@@ -28,13 +28,18 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       cerData: [],
-      idCard: "1111111111111",
+      idCard: ""
     };
+  },
+   computed: {
+    ...mapGetters({
+      GET_USER: "users/GET_USER",
+    }),
   },
   mounted() {
     this.listCer();
@@ -51,6 +56,7 @@ export default {
       this.$router.push("/history");
     },
     async listCer() {
+      this.idCard = this.GET_USER[0].IDCard;
       this.cerData = await this.byIdCard({
         IDCARD: this.idCard,
       });

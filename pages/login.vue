@@ -92,6 +92,7 @@ export default {
   methods: {
     ...mapMutations({
       SET_USER: "users/SET_USER",
+      SET_LOGIN: "users/SET_LOGIN",
     }),
     ...mapActions({
       Checkuse: "users/Logincheck",
@@ -118,6 +119,7 @@ export default {
         console.log(res);
         if (res[0].Role == "user") {
           console.log("a");
+          this.SET_LOGIN(true)
           this.$router.push("/users/userpage");
         } else if (res[0].Role == "teacher") {
           this.$router.push("/Teacher/teacherhome");

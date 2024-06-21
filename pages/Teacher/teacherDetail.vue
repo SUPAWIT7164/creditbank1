@@ -23,13 +23,13 @@
                   ><div class="block-d">  {{ item.Titleeng }} {{ item.Nameeng }} {{ item.Lastnameeng }} </div></v-col
                 >
                   <v-col cols="3" class="pa-2"
-                  ><div class="block-d-1">เลขที่บัตรประชาชน :</div></v-col
+                  ><div class="block-d-1">เลขบัตรประชาชน :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
                   ><div class="block-d">{{ item.IDCard }}</div></v-col
                 >
                 <v-col cols="3" class="pa-2"
-                  ><div class="block-d-1">เบอร์ติดต่อ:</div></v-col
+                  ><div class="block-d-1">เบอร์ติดต่อ :</div></v-col
                 >
                 <v-col cols="9" class="pa-2"
                   ><div class="block-d">{{ item.Tel }}</div></v-col

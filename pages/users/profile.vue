@@ -10,69 +10,75 @@
           <v-col cols="12">
             <div class="mx-15">
               <v-row v-for="(item, index) in regisData" :key="index">
-                <v-col cols="12"
+                <v-col cols="12" class="pa-1"
                   ><div class="block-d-1 text-center">
                     ข้อมูลผู้เรียน
                   </div></v-col
                 >
-                <v-col cols="3" class="pa-2"
+                <v-col cols="12" md="3" class="pa-1"
                   ><div class="block-d-1">ชื่อ :</div></v-col
                 >
-                <v-col cols="9" class="pa-2"
+                <v-col cols="12" md="9" class="pa-1"
                   ><div class="block-d">
                     {{ item.Title }} {{ item.Name }} {{ item.Lastname }}
                   </div></v-col
                 >
-                <v-col cols="3" class="pa-2"
+                <v-col cols="12" md="3" class="pa-1"
                   ><div class="block-d-1">ชื่ออังกฤษ :</div></v-col
                 >
-                <v-col cols="9" class="pa-2"
+                <v-col cols="12" md="9" class="pa-1"
                   ><div class="block-d">
                     {{ item.Titleeng }} {{ item.Nameeng }}
                     {{ item.Lastnameeng }}
                   </div></v-col
                 >
-                <v-col cols="3" class="pa-2"
+                <v-col cols="12" md="3" class="pa-1"
                   ><div class="block-d-1">เลขที่บัตรประชาชน :</div></v-col
                 >
-                <v-col cols="9" class="pa-2"
+                <v-col cols="12" md="9" class="pa-1"
                   ><div class="block-d">{{ item.IDCard }}</div></v-col
                 >
-                <v-col cols="3" class="pa-2"
+                <v-col cols="12" md="3" class="pa-1"
                   ><div class="block-d-1">เบอร์ติดต่อ:</div></v-col
                 >
-                <v-col cols="9" class="pa-2"
+                <v-col cols="12" md="9" class="pa-1"
                   ><div class="block-d">{{ item.Tel }}</div></v-col
                 >
-                <v-col cols="3" class="pa-2"
+                <v-col cols="12" md="3" class="pa-1"
                   ><div class="block-d-1">Email</div></v-col
                 >
-                <v-col cols="9" class="pa-2"
+                <v-col cols="12" md="9" class="pa-1"
                   ><div class="block-d">{{ item.Email }}</div></v-col
                 >
-                <v-col cols="3" class="pa-2"
+                <v-col cols="12" md="3" class="pa-1"
                   ><div class="block-d-1">ตำแหน่ง</div></v-col
                 >
-                <v-col cols="9" class="pa-2"
+                <v-col cols="12" md="9" class="pa-1"
                   ><div class="block-d">{{ item.Role }}</div></v-col
                 >
-                <v-col cols="12"
+                <v-col cols="12" class="pa-1"
                   ><div class="block-d-1 text-center">
                     ประวัติการเรียน
                   </div></v-col
                 >
-                <v-col cols="12" v-for="(item, i) in passC" :key="i">
+                <v-col cols="12" class="pa-0" v-for="(item, i) in passC" :key="i">
                   <v-row no-gutters>
-                    <v-col cols="3"><div class="block-d-1">วิชา :</div></v-col>
-                    <v-col cols="9" class="block-d"
-                      ><span class="" @click="gotoDetail(item.SUBJECT)">
-                        {{ item.SUBJECT }}
-                      </span>
+                    <v-col cols="12" md="3" class="pa-1"
+                      ><div class="block-d-1">วิชา :</div></v-col
+                    >
+                    <v-col
+                      cols="12"
+                      md="9"
+                      class="block-d pa-1"
+                      @click="gotoDetail(item.SUBJECT)"
+                    >
+                      {{ item.SUBJECT }}
                     </v-col>
                   </v-row>
                 </v-col>
                 <v-col cols="12" class="text-center">
-                  <v-btn depressed color="success" @click="genPass()">ใบรับรอง</v-btn>
+                  <v-btn depressed color="success" @click="genPass()"
+                    >ใบรับรอง</v-btn>
                 </v-col>
               </v-row>
             </div>
@@ -84,14 +90,11 @@
 </template>
 
 <script>
-// import navbar from '../../components/navbar.vue';
 import { mapMutations, mapActions, mapGetters } from "vuex";
 import Navbaruser from "../../components/navbaruser.vue";
 export default {
   components: { Navbaruser },
-  component: {
-    Navbaruser,
-  },
+
   data() {
     return {
       regisData: [],
@@ -119,7 +122,7 @@ export default {
       console.log(this.regisData);
     },
     async confirmSub() {
-      this.IDCARD = this.GET_USER[0].IDCARD
+      this.IDCARD = this.GET_USER[0].IDCard;
       this.passC = await this.handleSelectConfirm({ IDCARD: this.IDCARD });
       console.log(this.passC);
     },

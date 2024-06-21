@@ -46,8 +46,8 @@
           </v-row>
         </v-card-text>
         <div class="">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, error
-          atque? Autem, suscipit velit odit quos magni veniam fugiat earum!
+          <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, error
+          atque? Autem, suscipit velit odit quos magni veniam fugiat earum! -->
         </div>
       </v-card>
     </v-container>

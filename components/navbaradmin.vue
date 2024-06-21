@@ -1,6 +1,15 @@
 <template>
   <div class="mt-8">
-    <v-navigation-drawer permanent app v-if="GET_LOGIN" color="green lighten-1" dark>
+    <v-app-bar color="green lighten-1" dark>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+    </v-app-bar>
+
+    <v-navigation-drawer
+      color="green lighten-1"
+      v-model="drawer"
+      absolute
+      temporary
+    >
       <v-toolbar-title>
         <v-img
           max-height="80"
@@ -11,7 +20,13 @@
         </v-img>
       </v-toolbar-title>
       <v-divider></v-divider>
-      <v-list nav dense v-for="(item, i) in items" :key="i" color="green lighten-1">
+      <v-list
+        nav
+        dense
+        v-for="(item, i) in items"
+        :key="i"
+        color="green lighten-1"
+      >
         <v-list-item
           :key="item.title"
           class="list-item-shadow"
@@ -56,6 +71,7 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
+      drawer: false,
       selectedItem: "",
       items: [
         {
@@ -74,15 +90,10 @@ export default {
           to: "/admin/managenews",
         },
         // {
-        //   title: "จัดการโพสต์",
+        //   title: "เพิ่มข้อมูลอาจารย์",
         //   icon: "mdi-wrench",
-        //   to: "/admin/manageSubject",
+        //   to: "/admin/manageAddTeacher",
         // },
-        {
-          title: "เพิ่มข้อมูลอาจารย์",
-          icon: "mdi-wrench",
-          to: "/admin/manageAddTeacher",
-        },
         {
           title: "จัดการลายเซ็น",
           icon: "mdi-wrench",
@@ -108,7 +119,7 @@ export default {
       if (item.title == "ออกจากระบบ") {
         this.$swal({
           title: "ออกจากระบบ",
-          text: `กรุณากดปุ่ม "ยีนยัน" เพื่อออกจากระบบ`,
+          text: `กรุณากดปุ่ม "ยืนยัน" เพื่อออกจากระบบ`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

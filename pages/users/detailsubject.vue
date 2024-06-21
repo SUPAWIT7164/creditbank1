@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="background">
        <Navbaruser />
        <v-col cols="12" class="mt-8">
       <p class="display-2 text-center">ข้อมูลหลักสูตร</p>
@@ -17,3 +17,12 @@ export default {
   name: 'UiComponent',
 };
 </script>
+
+<style scoped>
+.background{
+background-color: #D4FFCA;
+height: 100vh; 
+}
+
+
+</style>

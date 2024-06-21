@@ -24,7 +24,7 @@
             <v-avatar>
               <img
                 src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=mail@ashallendesign.co.uk"
-                alt="sanhaphorn wangmai"
+                alt="sanhaphon hwangmai"
               />
 
             </v-avatar>
@@ -119,4 +119,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .v-toolbar-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+</style>
+
+

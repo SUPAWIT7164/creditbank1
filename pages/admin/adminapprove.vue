@@ -135,4 +135,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-col.pl-10 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .v-col.pl-10 {
+    flex-direction: row;
+  }
+}
+</style>
+
+

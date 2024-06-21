@@ -106,7 +106,6 @@ const generateBilling = async(req, res, next) => {
     try {
         const thSarabunPSKFont = fs.readFileSync("fonts/THSarabunNew.ttf");
         const thSarabunPSKFontBuffer = Buffer.from(thSarabunPSKFont);
-
         console.log(thSarabunPSKFontBuffer);
         const doc = new Document({
             size: "A4",
@@ -181,7 +180,7 @@ const generateBilling = async(req, res, next) => {
             .font("THSarabunNew")
             .fontSize(20)
             .fill("#021c27")
-            .text("ให้ ณ วันที่ 2 สิงหาคม 2567", {
+            .text(`ให้ ณ วันที่ 2 สิงหาคม 2568`, {
                 align: "center",
             });
         doc.moveDown();
@@ -256,8 +255,7 @@ const generateBilling = async(req, res, next) => {
             .font("THSarabunNew")
             .fontSize(20)
             .fill("#021c27")
-            .text(
-                `${data.TITLENAME + " " + data.USERNAME + "  " + data.LASTNAME}`,
+            .text(`${data.TITLENAME + " " + data.USERNAME + "  " + data.LASTNAME }`,
                 startLine2,
                 signatureHeight + 10, {
                     columns: 1,
@@ -461,9 +459,7 @@ const handleExpdf = async(req, res) => {
         doc
             .font("THSarabunNew")
             .fontSize(16)
-            .text(
-                `หนังสือฉบับนี้เป็นหนังสือรับรองว่า ${result[0].TITLENAME} ${result[0].USERNAME} ${result[0].LASTNAME} เป็นผู้เรียนในหลักสูตรได้ผ่านการอบรมตามวิชาตามกำหนดดังต่อไปนี้`, { align: "start" }
-            );
+            .text(`หนังสือฉบับนี้เป็นหนังสือรับรองว่า ${ result[0].TITLENAME } ${ result[0].USERNAME } ${ result[0].LASTNAME } เป็นผู้เรียนในหลักสูตรได้ผ่านการอบรมตามวิชาตามกำหนดดังต่อไปนี้ `, { align: "start" });
 
         doc.moveDown(20);
         // วาดตาราง
@@ -514,13 +510,14 @@ const handleExpdf = async(req, res) => {
             tableTop += itemGap;
         }
 
-        doc.moveDown(20);
+        doc.moveDown(5);
         // เพิ่มลายเซ็น 1
         const signatureWidth = 100;
         const signatureHeight = 50;
 
         const signatureX1 = 80; // ตำแหน่ง x ของลายเซ็นด้านซ้าย
         const signatureY1 = 350; // ตำแหน่ง y ของลายเซ็นด้านซ้าย
+        doc.moveDown(10);
         doc.image("assets/รายเซ็นอาจานย์ไม่มีพื้น.png", signatureX1, signatureY1, {
             fit: [150, signatureHeight],
             align: "center",
@@ -531,14 +528,16 @@ const handleExpdf = async(req, res) => {
         const namex5 = 70 + 20; // ตำแหน่ง x ของชื่อจะเยื้องไปทางขวาจากลายเซ็น
         const nameY1 = signatureY1 + signatureHeight + 10; // ตำแหน่ง y อยู่ด้านล่างลายเซ็นเล็กน้อย
         const nameY = signatureY1 + signatureHeight + 25; // ตำแหน่ง y อยู่ด้านล่างลายเซ็นเล็กน้อย
+        doc.moveDown(10);
         doc
             .font("THSarabunNew")
             .text("(ผู้ช่วยศาสตราจารย์ ดร.สนิท สิทธิ)", nameX1, nameY1)
             .text("ผู้อำนวยการและพัฒนาวิชาการ", namex5, nameY);
-
+        doc.moveDown(25);
         // เพิ่มลายเซ็น 2
         const signatureX2 = 350; // ตำแหน่ง x ของลายเซ็นด้านขวา
         const signatureY2 = 350; // ตำแหน่ง y ของลายเซ็นด้านขวา
+        doc.moveDown(10);
         doc.image("assets/สิริไม่มีพื้น.png", signatureX2, signatureY2, {
             fit: [90, signatureHeight],
             align: "center",
@@ -549,16 +548,13 @@ const handleExpdf = async(req, res) => {
         const nameX4 = 320 + 20; // ตำแหน่ง x ของชื่อจะเยื้องไปทางขวาจากลายเซ็น
         const nameY2 = signatureY2 + signatureHeight + 10; // ตำแหน่ง y อยู่ด้านล่างลายเซ็นเล็กน้อย
         const nameY3 = signatureY2 + signatureHeight + 25; // ตำแหน่ง y อยู่ด้านล่างลายเซ็นเล็กน้อย
+        doc.moveDown(10);
         doc
             .font("THSarabunNew")
             .text("(นางสาวศิริประภา วิรัชเจริญพันธ์)", nameX2, nameY2)
             .text("นายทะเบียน", nameX4, nameY3);
-
-        doc.moveDown(2);
-        doc
-            .font("THSarabunNew")
-            .fontSize(12)
-            .text(`ให้ไว้ ณ วันที่ ${formattedThaiDate}`);
+        doc.moveDown(3);
+        doc.font("THSarabunNew").fontSize(12).text(`ให้ ไว้ ณ วันที่ ${formattedThaiDate}`);
 
         doc.end();
         const pdfStream = doc.pipe(new PassThrough());
@@ -579,33 +575,33 @@ const handleExpdf = async(req, res) => {
     }
 };
 
-const handleSelectsj = async (req, res) => {
-  const {sj} = req.body
-  try {
-    const result = await SUBJECT.selectsj(sj);
-    res.status(200).send(result);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
+const handleSelectsj = async(req, res) => {
+    const { sj } = req.body;
+    try {
+        const result = await SUBJECT.selectsj(sj);
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 module.exports = {
-  handleAddSubject,
-  handleSelectSubject,
-  handleApproveSub,
-  handleCancelSub,
-  handleShowPopData,
-  handleSelectSByAJ,
-  handladdPeoplePass,
-  handlaselectByIdCard,
-  generateBilling,
-  handlaselectDetail,
-  handleGetuser,
-  handleInsertSignature,
-  handleSelectSignature,
-  handleDeleteSignature,
-  handleRegisSub,
-  handleSelectConfirm,
-  handleExpdf,
-  handleSelectsj
+    handleAddSubject,
+    handleSelectSubject,
+    handleApproveSub,
+    handleCancelSub,
+    handleShowPopData,
+    handleSelectSByAJ,
+    handladdPeoplePass,
+    handlaselectByIdCard,
+    generateBilling,
+    handlaselectDetail,
+    handleGetuser,
+    handleInsertSignature,
+    handleSelectSignature,
+    handleDeleteSignature,
+    handleRegisSub,
+    handleSelectConfirm,
+    handleExpdf,
+    handleSelectsj,
 };

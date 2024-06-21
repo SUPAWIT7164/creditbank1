@@ -2,7 +2,11 @@
   <div class="" v-if="!GET_LOGIN">
     <v-app-bar color="1E1E1E" dark>
       <v-toolbar-title>
+        <v-flex xs-12 sm>
+          <span class="text-h6"></span>
+        </v-flex>
         <v-img
+          v-if="!$vuetify.breakpoint.xs"
           max-height="80"
           max-width="300"
           class="ml-4"
@@ -11,15 +15,35 @@
         </v-img>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <div class="" v-if="!GET_LOGIN">
-        <button class="mr-10" @click="homepage">หน้าหลัก</button>
-        <button class="mr-10" @click="pressrelease">ข่าวประชาสัมพันธ์</button>
-        <button class="mr-10" @click="news">การอบรม</button>
-        <button class="mr-10" @click="about">เกี่ยวกับเรา</button>
-      </div>
-      <v-btn depressed color="success" @click="login" v-if="!GET_LOGIN"
-        >เข้าสู่ระบบ | Log in</v-btn
-      >
+   <v-grid-container>
+     
+        <v-layout row wrap>
+          <v-flex xs="12" md="4">
+            <button class="mr-10 v-btn v-btn--small" @click="homepage">
+              หน้าหลัก
+            </button>
+          </v-flex>
+          <v-flex xs="12" md="4">
+            <button class="mr-10 v-btn v-btn--small" @click="pressrelease">
+              ข่าวประชาสัมพันธ์
+            </button>
+          </v-flex>
+          <!-- <v-flex xs="12" md="4">
+            <button class="mr-10 v-btn v-btn--small" @click="news">
+              การอบรม
+            </button>
+          </v-flex> -->
+          <v-flex xs="12" md="4">
+            <button class="mr-10 v-btn v-btn--small" @click="about">
+              เกี่ยวกับเรา
+            </button>
+          </v-flex>
+        </v-layout>
+       </v-grid-container>
+
+      <v-btn width="130" depressed color="success" @click="login" v-if="!GET_LOGIN">
+        เข้าสู่ระบบ | Login
+      </v-btn>
     </v-app-bar>
   </div>
 </template>
@@ -43,8 +67,8 @@ export default {
     pressrelease() {
       this.$router.push("/pressrelease");
     },
-    news(){
-  this.$swal({
+    news() {
+      this.$swal({
         title: "กรุณาเข้าสู่ระบบ",
         icon: "warning",
         position: "center",
@@ -52,10 +76,10 @@ export default {
         confirmButtonText: "ยืนยัน",
       }).then(async (result) => {
         if (result.isConfirmed) {
-      this.$router.push("/login");
-        } 
-   });
-  },
+          this.$router.push("/login");
+        }
+      });
+    },
     about() {
       this.$router.push("/about");
     },
@@ -65,5 +89,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
